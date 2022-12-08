@@ -15,5 +15,11 @@
         <item>Mazda</item>
     </string-array>
 
+    <string-array name="vehicle_category">
+        <item>Race Motorcycle</item>
+        <item>Not for Race</item>
+        <item>Family</item>
+    </string-array>
+
 
 </resources>
