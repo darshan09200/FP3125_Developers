@@ -156,6 +156,7 @@
                 android:text="Motorbike" />
         </RadioGroup>
 
+
         <!--        Vehicle Make-->
 
         <TextView
@@ -185,6 +186,23 @@
             android:layout_height="wrap_content"
             android:entries="@array/vehicle_category"
             android:minHeight="48dp" />
+
+        <!--        Vehicle Type-->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Vehicle Type"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/vehicle_type"
+            android:minHeight="48dp" />
+
+
         <!--sidecar-->
         <LinearLayout
             android:layout_width="match_parent"
