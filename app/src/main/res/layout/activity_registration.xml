@@ -203,6 +203,21 @@
             android:minHeight="48dp" />
 
 
+        <!--        Vehicle Color-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Vehicle Color"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/vehicle_color"
+            android:minHeight="48dp" />
+
+
         <!--sidecar-->
         <LinearLayout
             android:layout_width="match_parent"
