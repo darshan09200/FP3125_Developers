@@ -57,5 +57,21 @@
             android:hint="3000"
             android:minHeight="48dp" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Occupation Rate"
+            android:textStyle="bold" />
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/ic_percent"
+            android:hint="90"
+            android:textAlignment="textEnd"
+            android:minHeight="48dp" />
+
     </LinearLayout>
 </ScrollView>
