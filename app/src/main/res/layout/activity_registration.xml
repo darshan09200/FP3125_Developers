@@ -41,5 +41,21 @@
             android:minHeight="48dp" />
 
 
+        <!-- Monthly Salary-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Monthly Salary"
+            android:textStyle="bold" />
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_dollar"
+            android:hint="3000"
+            android:minHeight="48dp" />
+
     </LinearLayout>
 </ScrollView>
