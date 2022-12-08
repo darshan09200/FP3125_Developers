@@ -57,6 +57,7 @@
             android:hint="3000"
             android:minHeight="48dp" />
 
+        <!--    Occupation Rate    -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -70,7 +71,22 @@
             android:layout_height="wrap_content"
             android:drawableEnd="@drawable/ic_percent"
             android:hint="90"
-            android:textAlignment="textEnd"
+            android:minHeight="48dp"
+            android:textAlignment="textEnd" />
+
+        <!-- Employee Type -->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Employee Type"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/employee_type"
             android:minHeight="48dp" />
 
     </LinearLayout>
