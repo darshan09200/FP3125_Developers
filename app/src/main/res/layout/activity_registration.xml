@@ -41,6 +41,30 @@
             android:minHeight="48dp" />
 
 
+        <!--    Date Picker-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Date" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:minHeight="48dp"
+                android:text="DD/MM/YYYY" />
+
+        </LinearLayout>
+
+
         <!-- Monthly Salary-->
         <TextView
             android:layout_width="match_parent"
@@ -154,14 +178,14 @@
 
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Sidecar"
                 android:textStyle="bold" />
 
             <CheckBox
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Yes" />
@@ -182,6 +206,9 @@
             android:layout_height="wrap_content"
             android:hint="3VS - A22"
             android:minHeight="48dp" />
+
+
+
 
 
     </LinearLayout>
