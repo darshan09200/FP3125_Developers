@@ -113,6 +113,22 @@
             android:entries="@array/employee_type"
             android:minHeight="48dp" />
 
+
+        <!--        Number Of Clients-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Number Of Clients"
+            android:textStyle="bold" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="10"
+            android:minHeight="48dp" />
+
+
         <!--Vehicle Type-->
 
         <TextView
@@ -206,9 +222,6 @@
             android:layout_height="wrap_content"
             android:hint="3VS - A22"
             android:minHeight="48dp" />
-
-
-
 
 
     </LinearLayout>
