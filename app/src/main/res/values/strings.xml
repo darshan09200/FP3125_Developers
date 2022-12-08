@@ -6,4 +6,14 @@
         <item>Programmer</item>
         <item>Tester</item>
     </string-array>
+    <string-array name="vehicle_make">
+        <item>Kawasaki</item>
+        <item>Honda</item>
+        <item>Lamborghini</item>
+        <item>BMW</item>
+        <item>Renault Clio</item>
+        <item>Mazda</item>
+    </string-array>
+
+
 </resources>
