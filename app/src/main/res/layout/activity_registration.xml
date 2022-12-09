@@ -80,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Monthly Salary"
-                android:textSize="16dp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
 
@@ -150,6 +150,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Number Of Clients"
+                android:textSize="18sp"
                 android:textStyle="bold"
 
                 />
