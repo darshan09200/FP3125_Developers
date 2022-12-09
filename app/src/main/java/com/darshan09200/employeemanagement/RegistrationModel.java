@@ -97,6 +97,24 @@ enum VehicleCategory {
 
 }
 
+enum VehicleType {
+    CHOOSE_TYPE("Please choose a type"),
+    SEDAN("Sedan"),
+    SPORT("Sport"),
+    HATCHBACK("Hatchback"),
+    SUV("SUV");
+
+    private String label;
+
+    VehicleType(String label) {
+        this.label = label;
+    }
+
+    public String getLabel() {
+        return label;
+    }
+}
+
 
 public class RegistrationModel {
 }
