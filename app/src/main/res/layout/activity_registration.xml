@@ -33,6 +33,7 @@
 
 
             <EditText
+                android:id="@+id/empId"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -70,6 +71,7 @@
                     android:textStyle="bold" />
 
                 <EditText
+                    android:id="@+id/firstName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/all_border"
@@ -88,6 +90,7 @@
                     android:textStyle="bold" />
 
                 <EditText
+                    android:id="@+id/lastName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/all_border"
@@ -113,6 +116,7 @@
                         android:textStyle="bold" />
 
                     <Button
+                        android:id="@+id/dob"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -157,6 +161,7 @@
 
 
                     <EditText
+                        android:id="@+id/monthlySalary"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -185,6 +190,7 @@
 
 
                     <EditText
+                        android:id="@+id/occupationRate"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -208,6 +214,7 @@
                     android:textStyle="bold" />
 
                 <Spinner
+                    android:id="@+id/empType"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/spinner_border"
@@ -224,6 +231,7 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/bonusLabel"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -233,6 +241,7 @@
                         android:textStyle="bold" />
 
                     <EditText
+                        android:id="@+id/bonus"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -267,17 +276,20 @@
                     android:textStyle="bold" />
 
                 <RadioGroup
+                    android:id="@+id/vehicle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
                     <RadioButton
+                        android:id="@+id/car"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Car" />
 
                     <RadioButton
+                        android:id="@+id/motorcycle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -297,6 +309,7 @@
                     android:textStyle="bold" />
 
                 <Spinner
+                    android:id="@+id/vehicleMake"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/spinner_border"
@@ -315,6 +328,7 @@
                     android:textStyle="bold" />
 
                 <Spinner
+                    android:id="@+id/vehicleCategory"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/spinner_border"
@@ -324,6 +338,7 @@
                 <!--        Vehicle Type-->
 
                 <TextView
+                    android:id="@+id/vehicleTypeLabel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
@@ -333,6 +348,7 @@
                     android:textStyle="bold" />
 
                 <Spinner
+                    android:id="@+id/vehicleType"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/spinner_border"
@@ -351,6 +367,7 @@
                     android:textStyle="bold" />
 
                 <Spinner
+                    android:id="@+id/vehicleColor"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/spinner_border"
@@ -360,6 +377,7 @@
 
                 <!--sidecar-->
                 <LinearLayout
+                    android:id="@+id/sidecarLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -376,6 +394,7 @@
                         android:textStyle="bold" />
 
                     <CheckBox
+                        android:id="@+id/seidecar"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -396,6 +415,7 @@
 
 
                 <EditText
+                    android:id="@+id/vehiclePlate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/all_border"
@@ -405,6 +425,7 @@
         </androidx.cardview.widget.CardView>
 
         <Button
+            android:id="@+id/submit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
