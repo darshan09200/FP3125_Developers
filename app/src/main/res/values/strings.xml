@@ -7,6 +7,7 @@
         <item>Tester</item>
     </string-array>
     <string-array name="vehicle_make">
+        <item>Please choose a make</item>
         <item>Kawasaki</item>
         <item>Honda</item>
         <item>Lamborghini</item>
@@ -16,12 +17,14 @@
     </string-array>
 
     <string-array name="vehicle_category">
+        <item>Please choose a category</item>
         <item>Race Motorcycle</item>
         <item>Not for Race</item>
         <item>Family</item>
     </string-array>
 
     <string-array name="vehicle_type">
+        <item>Please choose a type</item>
         <item>Sedan</item>
         <item>Sport</item>
         <item>Hatchback</item>
@@ -29,6 +32,7 @@
     </string-array>
 
     <string-array name="vehicle_color">
+        <item>Please choose a color</item>
         <item>Yellow</item>
         <item>Black</item>
         <item>White</item>
