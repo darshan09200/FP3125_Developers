@@ -11,12 +11,45 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <!--                Employee ID-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="4dp"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Employee ID"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/all_border"
+                android:hint="1384"
+                android:minHeight="48dp"
+                android:textAlignment="textEnd" />
+
+
+        </LinearLayout>
+
+
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="4dp"
+            android:layout_marginVertical="4dp"
             app:cardElevation="2dp"
             app:cardUseCompatPadding="true">
 
@@ -25,36 +58,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="16dp">
-
-                <!--                Employee ID-->
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Employee ID"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-
-                    <EditText
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/all_border"
-                        android:hint="1384"
-                        android:minHeight="48dp"
-                        android:textAlignment="textEnd" />
-
-
-                </LinearLayout>
-
 
                 <!-- First Name -->
                 <TextView
