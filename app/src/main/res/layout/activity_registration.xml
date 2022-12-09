@@ -105,9 +105,10 @@
 
                     <TextView
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:text="Date Of Birth"
+                        android:gravity="center_vertical"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -147,8 +148,9 @@
 
                     <TextView
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:gravity="center_vertical"
                         android:text="Monthly Salary"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -174,8 +176,9 @@
 
                     <TextView
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:gravity="center_vertical"
                         android:text="Occupation Rate"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -222,13 +225,12 @@
 
                     <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="Number Of Clients"
+                        android:gravity="center_vertical"
+                        android:text="Number of Clients"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-
-                        />
+                        android:textStyle="bold" />
 
                     <EditText
                         android:layout_width="match_parent"
@@ -264,7 +266,7 @@
                 <!--Vehicle Type-->
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginTop="16dp"
                     android:text="Vehicle"
                     android:textStyle="bold" />
@@ -365,8 +367,9 @@
 
                     <TextView
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:gravity="center_vertical"
                         android:text="Sidecar"
                         android:textSize="18sp"
                         android:textStyle="bold" />
