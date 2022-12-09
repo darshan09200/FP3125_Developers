@@ -1,3 +1,39 @@
 <resources>
     <string name="app_name">Employee Management</string>
+
+    <string-array name="employee_type">
+        <item>Manager</item>
+        <item>Programmer</item>
+        <item>Tester</item>
+    </string-array>
+    <string-array name="vehicle_make">
+        <item>Kawasaki</item>
+        <item>Honda</item>
+        <item>Lamborghini</item>
+        <item>BMW</item>
+        <item>Renault Clio</item>
+        <item>Mazda</item>
+    </string-array>
+
+    <string-array name="vehicle_category">
+        <item>Race Motorcycle</item>
+        <item>Not for Race</item>
+        <item>Family</item>
+    </string-array>
+
+    <string-array name="vehicle_type">
+        <item>Sedan</item>
+        <item>Sport</item>
+        <item>Hatchback</item>
+        <item>SUV</item>
+    </string-array>
+
+    <string-array name="vehicle_color">
+        <item>Yellow</item>
+        <item>Black</item>
+        <item>White</item>
+        <item>Red</item>
+    </string-array>
+
+
 </resources>
