@@ -44,6 +44,7 @@ enum VehicleMake {
         this.vehicle = vehicle;
     }
 
+
     public String getLabel() {
         return label;
     }
@@ -73,6 +74,28 @@ enum VehicleMake {
     }
 }
 
+enum VehicleCategory {
+    CHOSE_CATEGORY("Please choose a category", Vehicle.NONE),
+    RACE_MOTORCYCLE("Race Motorcycle", Vehicle.MOTORCYCLE),
+    NOT_FOR_RACE("Not for Race", Vehicle.CAR),
+    FAMILY("Family", Vehicle.CAR);
+    private String label;
+    private Vehicle vehicle;
+
+    VehicleCategory(String label, Vehicle vehicle) {
+        this.label = label;
+        this.vehicle = vehicle;
+    }
+
+    public Vehicle getVehicle() {
+        return vehicle;
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
+}
 
 
 public class RegistrationModel {
