@@ -134,15 +134,17 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
+            android:layout_marginBottom="4dp"
             android:text="Employee Type"
             android:textStyle="bold" />
 
         <Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/spinner_border"
             android:entries="@array/employee_type"
-
             android:minHeight="48dp" />
 
 
@@ -206,13 +208,16 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
+            android:layout_marginBottom="4dp"
             android:text="Vehicle Make"
             android:textStyle="bold" />
 
         <Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/spinner_border"
             android:entries="@array/vehicle_make"
             android:minHeight="48dp" />
 
@@ -221,13 +226,16 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
+            android:layout_marginBottom="4dp"
             android:text="Vehicle Category"
             android:textStyle="bold" />
 
         <Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/spinner_border"
             android:entries="@array/vehicle_category"
             android:minHeight="48dp" />
 
@@ -236,13 +244,16 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
+            android:layout_marginBottom="4dp"
             android:text="Vehicle Type"
             android:textStyle="bold" />
 
         <Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/spinner_border"
             android:entries="@array/vehicle_type"
             android:minHeight="48dp" />
 
@@ -251,13 +262,16 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
+            android:layout_marginBottom="4dp"
             android:text="Vehicle Color"
             android:textStyle="bold" />
 
         <Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/spinner_border"
             android:entries="@array/vehicle_color"
             android:minHeight="48dp" />
 
