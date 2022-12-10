@@ -1,6 +1,8 @@
 package com.darshan09200.employeemanagement;
 
 import android.content.Context;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -10,7 +12,7 @@ import com.darshan09200.employeemanagement.databinding.ActivityRegistrationBindi
 
 import java.util.ArrayList;
 
-public class RegistrationController implements AdapterView.OnItemSelectedListener, RadioGroup.OnCheckedChangeListener {
+public class RegistrationController implements AdapterView.OnItemSelectedListener, RadioGroup.OnCheckedChangeListener, TextWatcher {
 
     ActivityRegistrationBinding binding;
 
@@ -31,6 +33,7 @@ public class RegistrationController implements AdapterView.OnItemSelectedListene
 
     public RegistrationController(Context context, ActivityRegistrationBinding binding) {
         this.binding = binding;
+
 
         employeeTypes = Registration.getInstance().getEmployeeTypeData();
         employeeTypeAdapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, employeeTypes);
@@ -67,6 +70,7 @@ public class RegistrationController implements AdapterView.OnItemSelectedListene
         binding.vehicleCategory.setOnItemSelectedListener(this);
         binding.vehicleType.setOnItemSelectedListener(this);
         binding.vehicleColor.setOnItemSelectedListener(this);
+        binding.firstName.addTextChangedListener(this);
 
         resetUI();
     }
@@ -74,6 +78,8 @@ public class RegistrationController implements AdapterView.OnItemSelectedListene
 
     public void resetUI() {
         binding.empId.setText("123");
+
+        binding.firstName.setText(Registration.getInstance().getFirstName());
         binding.dob.setText("12/34/5678");
 
         onEmployeeTypeChanged();
@@ -198,5 +204,20 @@ public class RegistrationController implements AdapterView.OnItemSelectedListene
         vehicleCategories.clear();
         vehicleCategories.addAll(Registration.getInstance().getVehicleCategoryData());
         binding.vehicleCategory.setSelection(0);
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+        Registration.getInstance().setFirstName(s.toString());
+    }
+
+    @Override
+    public void afterTextChanged(Editable s) {
+
     }
 }
