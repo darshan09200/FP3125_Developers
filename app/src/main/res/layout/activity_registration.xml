@@ -313,7 +313,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/spinner_border"
-                    android:entries="@array/vehicle_make"
                     android:minHeight="48dp" />
 
                 <!--        Vehicle Category-->
@@ -332,7 +331,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/spinner_border"
-                    android:entries="@array/vehicle_category"
                     android:minHeight="48dp" />
 
                 <!--        Vehicle Type-->

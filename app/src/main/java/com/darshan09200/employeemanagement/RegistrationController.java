@@ -15,6 +15,9 @@ public class RegistrationController {
     ArrayList<String> vehicleMakes;
     ArrayAdapter<String> vehicleMakeAdapter;
 
+    ArrayList<String> vehicleCategory;
+    ArrayAdapter<String> vehicleCategoryAdapter;
+
     public RegistrationController(Context context, ActivityRegistrationBinding binding) {
         this.binding = binding;
 
@@ -23,8 +26,15 @@ public class RegistrationController {
         vehicleMakeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.vehicleMake.setAdapter(vehicleMakeAdapter);
 
+        vehicleCategory = Registration.getInstance().getVehicleCategoryData();
+        vehicleCategoryAdapter = new ArrayAdapter(context, android.R.layout.simple_spinner_item,vehicleCategory);
+        vehicleCategoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        binding.vehicleCategory.setAdapter(vehicleCategoryAdapter);
+
         resetUI();
     }
+
+
 
     public void resetUI() {
         binding.empId.setText("123");
