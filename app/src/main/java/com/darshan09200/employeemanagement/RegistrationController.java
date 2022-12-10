@@ -69,6 +69,8 @@ public class RegistrationController implements AdapterView.OnItemSelectedListene
         binding.empType.setOnItemSelectedListener(this);
 
         binding.vehicleMake.setOnItemSelectedListener(this);
+
+        binding.vehicleCategory.setOnItemSelectedListener(this);
         resetUI();
     }
 
@@ -137,7 +139,12 @@ public class RegistrationController implements AdapterView.OnItemSelectedListene
                 Registration.getInstance().setVehicleMake(vehicleMake);
                 break;
 
-                
+            case R.id.vehicleCategory:
+                String vehicleCategoryValue = vehicleCategory.get(position);
+                VehicleCategory vehicleCategory  = Convertor.convertVehicleCategory(vehicleCategoryValue);
+                Registration.getInstance().setVehicleCategory(vehicleCategory);
+                break;
+
         }
     }
 
