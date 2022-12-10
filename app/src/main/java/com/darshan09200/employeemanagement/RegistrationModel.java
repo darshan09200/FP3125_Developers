@@ -115,6 +115,24 @@ enum VehicleType {
     }
 }
 
+enum VehicleColor {
+    CHOOSE_COLOR("Please choose a color"),
+    YELLOW("Yellow"),
+    BLACK("Black"),
+    WHITE("White"),
+    RED("Red");
+
+    private String label;
+
+    VehicleColor(String label) {
+        this.label = label;
+    }
+
+    public String getLabel() {
+        return label;
+    }
+}
+
 
 public class RegistrationModel {
 }
