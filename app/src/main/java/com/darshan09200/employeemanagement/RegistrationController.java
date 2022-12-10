@@ -96,7 +96,7 @@ public class RegistrationController implements AdapterView.OnItemSelectedListene
 
         binding.firstName.setText(Registration.getInstance().getFirstName());
         binding.lastName.setText(Registration.getInstance().getLastName());
-        binding.dob.setText("12/34/5678");
+        binding.dob.setText(Registration.getInstance().getFormattedDate());
 
 
         onEmployeeTypeChanged();
@@ -232,9 +232,8 @@ public class RegistrationController implements AdapterView.OnItemSelectedListene
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         Registration.getInstance().setDob(LocalDate.of(year, month + 1, dayOfMonth));
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        String formattedString = Registration.getInstance().getDob().format(formatter);
-        binding.dob.setText(formattedString);
+
+        binding.dob.setText(Registration.getInstance().getFormattedDate());
     }
 
     @Override

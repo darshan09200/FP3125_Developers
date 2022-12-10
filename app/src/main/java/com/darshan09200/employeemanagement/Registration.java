@@ -1,6 +1,7 @@
 package com.darshan09200.employeemanagement;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 enum EmployeeType {
@@ -161,6 +162,12 @@ public class Registration {
 
     public LocalDate getDob() {
 		return dob;
+	}
+
+	public String getFormattedDate() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		String formattedString = dob.format(formatter);
+		return formattedString;
 	}
 
 	public void setDob(LocalDate dob) {
