@@ -12,6 +12,9 @@ public class RegistrationController {
 
     ActivityRegistrationBinding binding;
 
+    ArrayList<String> employeeTypes;
+    ArrayAdapter<String> employeeTypeAdapter;
+
     ArrayList<String> vehicleMakes;
     ArrayAdapter<String> vehicleMakeAdapter;
 
@@ -27,13 +30,18 @@ public class RegistrationController {
     public RegistrationController(Context context, ActivityRegistrationBinding binding) {
         this.binding = binding;
 
+        employeeTypes = Registration.getInstance().getEmployeeTypeData();
+        employeeTypeAdapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, employeeTypes);
+        employeeTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        binding.empType.setAdapter(employeeTypeAdapter);
+
         vehicleMakes = Registration.getInstance().getVehicleMakeData();
-        vehicleMakeAdapter = new ArrayAdapter(context, android.R.layout.simple_spinner_item, vehicleMakes);
+        vehicleMakeAdapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, vehicleMakes);
         vehicleMakeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.vehicleMake.setAdapter(vehicleMakeAdapter);
 
         vehicleCategory = Registration.getInstance().getVehicleCategoryData();
-        vehicleCategoryAdapter = new ArrayAdapter(context, android.R.layout.simple_spinner_item, vehicleCategory);
+        vehicleCategoryAdapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, vehicleCategory);
         vehicleCategoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.vehicleCategory.setAdapter(vehicleCategoryAdapter);
 
@@ -43,7 +51,7 @@ public class RegistrationController {
         binding.vehicleType.setAdapter(vehicleTypeAdapter);
 
         vehicleColour = Registration.getInstance().getVehicleColorData();
-        vehicleColourAdapter = new ArrayAdapter(context, android.R.layout.simple_spinner_item, vehicleColour);
+        vehicleColourAdapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, vehicleColour);
         vehicleColourAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.vehicleColor.setAdapter(vehicleColourAdapter);
 

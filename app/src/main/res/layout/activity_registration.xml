@@ -224,7 +224,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/spinner_border"
-                    android:entries="@array/employee_type"
                     android:minHeight="48dp" />
 
 

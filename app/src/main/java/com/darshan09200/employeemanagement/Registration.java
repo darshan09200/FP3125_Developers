@@ -3,6 +3,23 @@ package com.darshan09200.employeemanagement;
 
 import java.util.ArrayList;
 
+enum EmployeeType {
+    MANAGER("Manager"),
+    PROGRAMMER("Programmer"),
+    TESTER("Tester");
+
+    private final String label;
+
+    EmployeeType(String label) {
+        this.label = label;
+    }
+
+    public String getLabel() {
+        return label;
+    }
+}
+
+
 enum Vehicle {
     BOTH("Both"),
     CAR("Car"),
@@ -124,6 +141,16 @@ public class Registration {
 
     public void setVehicle(Vehicle vehicle) {
         this.vehicle = vehicle;
+    }
+
+    public ArrayList<String> getEmployeeTypeData() {
+        ArrayList<String> employeeTypes = new ArrayList<>();
+
+        for (EmployeeType employeeType :
+                EmployeeType.values()) {
+            employeeTypes.add(employeeType.getLabel());
+        }
+        return employeeTypes;
     }
 
     public ArrayList<String> getVehicleMakeData() {

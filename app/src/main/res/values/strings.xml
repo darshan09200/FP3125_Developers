@@ -1,12 +1,3 @@
 <resources>
     <string name="app_name">Employee Management</string>
-
-    <string-array name="employee_type">
-        <item>Manager</item>
-        <item>Programmer</item>
-        <item>Tester</item>
-    </string-array>
-
-
-
 </resources>
