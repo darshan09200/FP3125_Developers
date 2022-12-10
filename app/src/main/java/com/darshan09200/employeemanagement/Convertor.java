@@ -10,9 +10,9 @@ public class Convertor {
         return null;
     }
 
-    public static Vehicle convertVehicle(String text) {
-        for (Vehicle v :
-                Vehicle.values()) {
+    public static VehicleKind convertVehicle(String text) {
+        for (VehicleKind v :
+                VehicleKind.values()) {
             if (v.getLabel().equalsIgnoreCase(text)) return v;
         }
         return null;

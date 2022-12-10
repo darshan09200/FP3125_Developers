@@ -20,14 +20,14 @@ enum EmployeeType {
 }
 
 
-enum Vehicle {
+enum VehicleKind {
     BOTH("Both"),
     CAR("Car"),
     MOTORCYCLE("Motorcycle");
 
     private final String label;
 
-    Vehicle(String label) {
+    VehicleKind(String label) {
         this.label = label;
     }
 
@@ -37,51 +37,51 @@ enum Vehicle {
 }
 
 enum VehicleMake {
-    CHOOSE_MAKE("Please choose a make", Vehicle.BOTH),
-    KAWASAKI("Kawasaki", Vehicle.MOTORCYCLE),
-    HONDA("Honda", Vehicle.BOTH),
-    LAMBORGHINI("Lamborghini", Vehicle.CAR),
-    BMW("BMW", Vehicle.CAR),
-    RENAULT("Renault", Vehicle.CAR),
-    MAZDA("Mazda", Vehicle.CAR);
+    CHOOSE_MAKE("Please choose a make", VehicleKind.BOTH),
+    KAWASAKI("Kawasaki", VehicleKind.MOTORCYCLE),
+    HONDA("Honda", VehicleKind.BOTH),
+    LAMBORGHINI("Lamborghini", VehicleKind.CAR),
+    BMW("BMW", VehicleKind.CAR),
+    RENAULT("Renault", VehicleKind.CAR),
+    MAZDA("Mazda", VehicleKind.CAR);
 
     private final String label;
-    private final Vehicle vehicle;
+    private final VehicleKind vehicleKind;
 
-    VehicleMake(String label, Vehicle vehicle) {
+    VehicleMake(String label, VehicleKind vehicleKind) {
         this.label = label;
-        this.vehicle = vehicle;
+        this.vehicleKind = vehicleKind;
     }
 
     public String getLabel() {
         return label;
     }
 
-    public Vehicle getVehicle() {
-        return vehicle;
+    public VehicleKind getVehicle() {
+        return vehicleKind;
     }
 }
 
 enum VehicleCategory {
-    CHOSE_CATEGORY("Please choose a category", Vehicle.BOTH),
-    RACE_MOTORCYCLE("Race Motorcycle", Vehicle.MOTORCYCLE),
-    NOT_FOR_RACE("Not for Race", Vehicle.BOTH),
-    FAMILY("Family", Vehicle.CAR);
+    CHOSE_CATEGORY("Please choose a category", VehicleKind.BOTH),
+    RACE_MOTORCYCLE("Race Motorcycle", VehicleKind.MOTORCYCLE),
+    NOT_FOR_RACE("Not for Race", VehicleKind.BOTH),
+    FAMILY("Family", VehicleKind.CAR);
 
     private final String label;
-    private final Vehicle vehicle;
+    private final VehicleKind vehicleKind;
 
-    VehicleCategory(String label, Vehicle vehicle) {
+    VehicleCategory(String label, VehicleKind vehicleKind) {
         this.label = label;
-        this.vehicle = vehicle;
+        this.vehicleKind = vehicleKind;
     }
 
     public String getLabel() {
         return label;
     }
 
-    public Vehicle getVehicle() {
-        return vehicle;
+    public VehicleKind getVehicle() {
+        return vehicleKind;
     }
 }
 
@@ -125,7 +125,7 @@ enum VehicleColor {
 public class Registration {
     private static Registration instance;
 
-    private Vehicle vehicle = Vehicle.CAR;
+    private VehicleKind vehicleKind = VehicleKind.CAR;
 
     private Registration() {
     }
@@ -135,12 +135,12 @@ public class Registration {
         return instance;
     }
 
-    public Vehicle getVehicle() {
-        return vehicle;
+    public VehicleKind getVehicle() {
+        return vehicleKind;
     }
 
-    public void setVehicle(Vehicle vehicle) {
-        this.vehicle = vehicle;
+    public void setVehicle(VehicleKind vehicleKind) {
+        this.vehicleKind = vehicleKind;
     }
 
     public ArrayList<String> getEmployeeTypeData() {
@@ -158,7 +158,7 @@ public class Registration {
 
         for (VehicleMake vehicleMake :
                 VehicleMake.values()) {
-            if (vehicleMake.getVehicle() == vehicle || vehicleMake.getVehicle() == Vehicle.BOTH)
+            if (vehicleMake.getVehicle() == vehicleKind || vehicleMake.getVehicle() == VehicleKind.BOTH)
                 vehicleMakes.add(vehicleMake.getLabel());
         }
         return vehicleMakes;
@@ -169,7 +169,7 @@ public class Registration {
 
         for (VehicleCategory vehicleCategory :
                 VehicleCategory.values()) {
-            if (vehicleCategory.getVehicle() == vehicle || vehicleCategory.getVehicle() == Vehicle.BOTH)
+            if (vehicleCategory.getVehicle() == vehicleKind || vehicleCategory.getVehicle() == VehicleKind.BOTH)
                 vehicleCategories.add(vehicleCategory.getLabel());
         }
         return vehicleCategories;

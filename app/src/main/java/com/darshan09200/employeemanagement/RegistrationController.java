@@ -65,7 +65,7 @@ public class RegistrationController {
 
         binding.bonusLabel.setText("Number of Clients");
 
-        binding.vehicle.check(R.id.car);
+        binding.vehicleKind.check(R.id.car);
 
         showVehicleType();
         hideSidecar();
