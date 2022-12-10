@@ -118,16 +118,6 @@ public class Registration {
         return instance;
     }
 
-    public ArrayList<String> getVehicleData() {
-        ArrayList<String> vehicles = new ArrayList<>();
-
-        for (Vehicle vehicle :
-                Vehicle.values()) {
-            if (vehicle != Vehicle.BOTH) vehicles.add(vehicle.getLabel());
-        }
-        return vehicles;
-    }
-
     public ArrayList<String> getVehicleMakeData() {
         ArrayList<String> vehicleMakes = new ArrayList<>();
 
@@ -142,8 +132,8 @@ public class Registration {
     public ArrayList<String> getVehicleCategoryData() {
         ArrayList<String> vehicleCategories = new ArrayList<>();
 
-        for (VehicleMake vehicleCategory :
-                VehicleMake.values()) {
+        for (VehicleCategory vehicleCategory :
+                VehicleCategory.values()) {
             if (vehicleCategory.getVehicle() == vehicle || vehicleCategory.getVehicle() == Vehicle.BOTH)
                 vehicleCategories.add(vehicleCategory.getLabel());
         }
@@ -153,10 +143,9 @@ public class Registration {
     public ArrayList<String> getVehicleTypeData() {
         ArrayList<String> vehicleTypes = new ArrayList<>();
 
-        for (VehicleMake vehicleType :
-                VehicleMake.values()) {
-            if (vehicleType.getVehicle() == vehicle || vehicleType.getVehicle() == Vehicle.BOTH)
-                vehicleTypes.add(vehicleType.getLabel());
+        for (VehicleType vehicleType :
+                VehicleType.values()) {
+            vehicleTypes.add(vehicleType.getLabel());
         }
         return vehicleTypes;
     }
@@ -164,10 +153,9 @@ public class Registration {
     public ArrayList<String> getVehicleColorData() {
         ArrayList<String> vehicleColors = new ArrayList<>();
 
-        for (VehicleMake vehicleColor :
-                VehicleMake.values()) {
-            if (vehicleColor.getVehicle() == vehicle || vehicleColor.getVehicle() == Vehicle.BOTH)
-                vehicleColors.add(vehicleColor.getLabel());
+        for (VehicleColor vehicleColor :
+                VehicleColor.values()) {
+            vehicleColors.add(vehicleColor.getLabel());
         }
         return vehicleColors;
     }
