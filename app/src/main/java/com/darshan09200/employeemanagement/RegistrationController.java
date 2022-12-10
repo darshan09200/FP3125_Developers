@@ -71,6 +71,7 @@ public class RegistrationController implements AdapterView.OnItemSelectedListene
         binding.vehicleMake.setOnItemSelectedListener(this);
         binding.vehicleCategory.setOnItemSelectedListener(this);
         binding.vehicleType.setOnItemSelectedListener(this);
+        binding.vehicleColor.setOnItemSelectedListener(this);
 
         resetUI();
     }
@@ -150,6 +151,12 @@ public class RegistrationController implements AdapterView.OnItemSelectedListene
                 String vehicleTypeValue = vehicleType.get(position);
                 VehicleType vehicleType = Convertor.convertVehicleType(vehicleTypeValue);
                 Registration.getInstance().setVehicleType(vehicleType);
+                break;
+
+            case R.id.vehicleColor:
+                String vehicleColorValue = vehicleColour.get(position);
+                VehicleColor vehicleColor = Convertor.convertVehicleColor(vehicleColorValue);
+                Registration.getInstance().setVehicleColor(vehicleColor);
                 break;
 
         }

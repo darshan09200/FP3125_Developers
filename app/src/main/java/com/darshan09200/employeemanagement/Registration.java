@@ -126,10 +126,12 @@ public class Registration {
     private static Registration instance;
 
     private EmployeeType employeeType = EmployeeType.MANAGER;
+
     private VehicleKind vehicleKind = VehicleKind.CAR;
     private VehicleMake vehicleMake = VehicleMake.CHOOSE_MAKE;
     private VehicleCategory vehicleCategory = VehicleCategory.CHOSE_CATEGORY;
     private VehicleType vehicleType = VehicleType.CHOOSE_TYPE;
+    private VehicleColor vehicleColor = VehicleColor.CHOOSE_COLOR;
 
     private Registration() {
     }
@@ -177,6 +179,14 @@ public class Registration {
 
     public void setVehicleType(VehicleType vehicleType) {
         this.vehicleType = vehicleType;
+    }
+
+    public VehicleColor getVehicleColor() {
+        return vehicleColor;
+    }
+
+    public void setVehicleColor(VehicleColor vehicleColor) {
+        this.vehicleColor = vehicleColor;
     }
 
     public ArrayList<String> getEmployeeTypeData() {
