@@ -127,6 +127,8 @@ public class Registration {
 	private String firstName = "";
     private String lastName = "";
 	private LocalDate dob;
+	private String monthlySalary;
+	private String occupationRate;
 	private EmployeeType employeeType = EmployeeType.MANAGER;
 
 	private VehicleKind vehicleKind = VehicleKind.CAR;
@@ -172,6 +174,22 @@ public class Registration {
 
 	public void setDob(LocalDate dob) {
 		this.dob = dob;
+	}
+
+	public String getMonthlySalary() {
+		return monthlySalary;
+	}
+
+	public void setMonthlySalary(String monthlySalary) {
+		this.monthlySalary = monthlySalary;
+	}
+
+	public String getOccupationRate() {
+		return occupationRate;
+	}
+
+	public void setOccupationRate(String occupationRate) {
+		this.occupationRate = occupationRate;
 	}
 
 	public EmployeeType getEmployeeType() {

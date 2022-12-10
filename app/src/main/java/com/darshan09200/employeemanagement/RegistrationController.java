@@ -97,6 +97,8 @@ public class RegistrationController implements AdapterView.OnItemSelectedListene
         binding.firstName.setText(Registration.getInstance().getFirstName());
         binding.lastName.setText(Registration.getInstance().getLastName());
         binding.dob.setText(Registration.getInstance().getFormattedDate());
+        binding.monthlySalary.setText(Registration.getInstance().getMonthlySalary());
+        binding.occupationRate.setText(Registration.getInstance().getOccupationRate());
 
 
         onEmployeeTypeChanged();
@@ -257,6 +259,8 @@ public class RegistrationController implements AdapterView.OnItemSelectedListene
             Registration.getInstance().setFirstName(s.toString());
         else if (binding.lastName.isFocused())
             Registration.getInstance().setLastName(s.toString());
+        else if (binding.monthlySalary.isFocused())
+            Registration.getInstance().setMonthlySalary(s.toString());
     }
 
     @Override
