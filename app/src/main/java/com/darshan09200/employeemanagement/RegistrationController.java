@@ -19,13 +19,13 @@ public class RegistrationController implements AdapterView.OnItemSelectedListene
     ArrayList<String> vehicleMakes;
     ArrayAdapter<String> vehicleMakeAdapter;
 
-    ArrayList<String> vehicleCategory;
+    ArrayList<String> vehicleCategories;
     ArrayAdapter<String> vehicleCategoryAdapter;
 
-    ArrayList<String> vehicleType;
+    ArrayList<String> vehicleTypes;
     ArrayAdapter<String> vehicleTypeAdapter;
 
-    ArrayList<String> vehicleColour;
+    ArrayList<String> vehicleColours;
     ArrayAdapter<String> vehicleColourAdapter;
 
     public RegistrationController(Context context, ActivityRegistrationBinding binding) {
@@ -41,18 +41,18 @@ public class RegistrationController implements AdapterView.OnItemSelectedListene
         vehicleMakeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.vehicleMake.setAdapter(vehicleMakeAdapter);
 
-        vehicleCategory = Registration.getInstance().getVehicleCategoryData();
-        vehicleCategoryAdapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, vehicleCategory);
+        vehicleCategories = Registration.getInstance().getVehicleCategoryData();
+        vehicleCategoryAdapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, vehicleCategories);
         vehicleCategoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.vehicleCategory.setAdapter(vehicleCategoryAdapter);
 
-        vehicleType = Registration.getInstance().getVehicleTypeData();
-        vehicleTypeAdapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, vehicleType);
+        vehicleTypes = Registration.getInstance().getVehicleTypeData();
+        vehicleTypeAdapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, vehicleTypes);
         vehicleTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.vehicleType.setAdapter(vehicleTypeAdapter);
 
-        vehicleColour = Registration.getInstance().getVehicleColorData();
-        vehicleColourAdapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, vehicleColour);
+        vehicleColours = Registration.getInstance().getVehicleColorData();
+        vehicleColourAdapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, vehicleColours);
         vehicleColourAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.vehicleColor.setAdapter(vehicleColourAdapter);
 
@@ -82,6 +82,7 @@ public class RegistrationController implements AdapterView.OnItemSelectedListene
         binding.dob.setText("12/34/5678");
 
         onEmployeeTypeChanged();
+
         binding.vehicleKind.check(R.id.car);
     }
 
@@ -122,7 +123,7 @@ public class RegistrationController implements AdapterView.OnItemSelectedListene
             bonusText = "Projects";
         }
 
-        binding.bonusLabel.setText("Number of " + bonusText);
+        binding.bonusLabel.setText(String.format("Number of %s", bonusText));
     }
 
     @Override
@@ -142,19 +143,19 @@ public class RegistrationController implements AdapterView.OnItemSelectedListene
                 break;
 
             case R.id.vehicleCategory:
-                String vehicleCategoryValue = vehicleCategory.get(position);
+                String vehicleCategoryValue = vehicleCategories.get(position);
                 VehicleCategory vehicleCategory = Convertor.convertVehicleCategory(vehicleCategoryValue);
                 Registration.getInstance().setVehicleCategory(vehicleCategory);
                 break;
 
             case R.id.vehicleType:
-                String vehicleTypeValue = vehicleType.get(position);
+                String vehicleTypeValue = vehicleTypes.get(position);
                 VehicleType vehicleType = Convertor.convertVehicleType(vehicleTypeValue);
                 Registration.getInstance().setVehicleType(vehicleType);
                 break;
 
             case R.id.vehicleColor:
-                String vehicleColorValue = vehicleColour.get(position);
+                String vehicleColorValue = vehicleColours.get(position);
                 VehicleColor vehicleColor = Convertor.convertVehicleColor(vehicleColorValue);
                 Registration.getInstance().setVehicleColor(vehicleColor);
                 break;
