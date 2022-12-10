@@ -1,15 +1,27 @@
 package com.darshan09200.employeemanagement;
 
+import android.content.Context;
 import android.view.View;
+import android.widget.ArrayAdapter;
 
 import com.darshan09200.employeemanagement.databinding.ActivityRegistrationBinding;
+
+import java.util.ArrayList;
 
 public class RegistrationController {
 
     ActivityRegistrationBinding binding;
 
-    public RegistrationController(ActivityRegistrationBinding binding) {
+    ArrayList<String> vehicleMakes;
+    ArrayAdapter<String> vehicleMakeAdapter;
+
+    public RegistrationController(Context context, ActivityRegistrationBinding binding) {
         this.binding = binding;
+
+        vehicleMakes = Registration.getInstance().getVehicleMakeData();
+        vehicleMakeAdapter = new ArrayAdapter(context, android.R.layout.simple_spinner_item, vehicleMakes);
+        vehicleMakeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        binding.vehicleMake.setAdapter(vehicleMakeAdapter);
 
         resetUI();
     }

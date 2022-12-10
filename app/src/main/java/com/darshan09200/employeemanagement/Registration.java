@@ -108,7 +108,7 @@ enum VehicleColor {
 public class Registration {
     private static Registration instance;
 
-    private Vehicle vehicle;
+    private Vehicle vehicle = Vehicle.CAR;
 
     private Registration() {
     }
@@ -116,6 +116,14 @@ public class Registration {
     public static Registration getInstance() {
         if (instance == null) instance = new Registration();
         return instance;
+    }
+
+    public Vehicle getVehicle() {
+        return vehicle;
+    }
+
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
     }
 
     public ArrayList<String> getVehicleMakeData() {
