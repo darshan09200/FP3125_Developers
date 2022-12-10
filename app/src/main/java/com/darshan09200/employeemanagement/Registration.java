@@ -127,6 +127,7 @@ public class Registration {
 
     private EmployeeType employeeType = EmployeeType.MANAGER;
     private VehicleKind vehicleKind = VehicleKind.CAR;
+    private VehicleMake vehicleMake = VehicleMake.CHOOSE_MAKE;
 
     private Registration() {
     }
@@ -150,6 +151,14 @@ public class Registration {
 
     public void setVehicle(VehicleKind vehicleKind) {
         this.vehicleKind = vehicleKind;
+    }
+
+    public VehicleMake getVehicleMake() {
+        return vehicleMake;
+    }
+
+    public void setVehicleMake(VehicleMake vehicleMake) {
+        this.vehicleMake = vehicleMake;
     }
 
     public ArrayList<String> getEmployeeTypeData() {
