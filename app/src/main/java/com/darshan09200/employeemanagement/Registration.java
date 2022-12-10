@@ -124,6 +124,7 @@ public class Registration {
 	private static Registration instance;
 
 	private String firstName = "";
+    private String lastName = "";
 	private LocalDate dob;
 	private EmployeeType employeeType = EmployeeType.MANAGER;
 
@@ -150,7 +151,15 @@ public class Registration {
 		this.firstName = firstName;
 	}
 
-	public LocalDate getDob() {
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public LocalDate getDob() {
 		return dob;
 	}
 
