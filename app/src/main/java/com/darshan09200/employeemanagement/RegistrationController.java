@@ -55,6 +55,15 @@ public class RegistrationController {
         vehicleColourAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.vehicleColor.setAdapter(vehicleColourAdapter);
 
+        binding.vehicleKind.setOnCheckedChangeListener((group, checkedId) -> {
+            if (checkedId == R.id.motorcycle) {
+                showSidecar();
+                hideVehicleType();
+            } else {
+                showVehicleType();
+                hideSidecar();
+            }
+        });
         resetUI();
     }
 
@@ -67,8 +76,6 @@ public class RegistrationController {
 
         binding.vehicleKind.check(R.id.car);
 
-        showVehicleType();
-        hideSidecar();
     }
 
     private void showVehicleType() {
