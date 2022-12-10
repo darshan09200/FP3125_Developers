@@ -2,13 +2,14 @@ package com.darshan09200.employeemanagement;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
 import com.darshan09200.employeemanagement.databinding.ActivityRegistrationBinding;
 
 import java.util.ArrayList;
 
-public class RegistrationController {
+public class RegistrationController implements AdapterView.OnItemSelectedListener {
 
     ActivityRegistrationBinding binding;
 
@@ -64,6 +65,8 @@ public class RegistrationController {
                 hideSidecar();
             }
         });
+
+        binding.empType.setOnItemSelectedListener(this);
         resetUI();
     }
 
@@ -72,10 +75,8 @@ public class RegistrationController {
         binding.empId.setText("123");
         binding.dob.setText("12/34/5678");
 
-        binding.bonusLabel.setText("Number of Clients");
-
+        onEmployeeTypeChanged();
         binding.vehicleKind.check(R.id.car);
-
     }
 
     private void showVehicleType() {
@@ -102,5 +103,36 @@ public class RegistrationController {
         if (binding.sidecarLayout.getVisibility() != View.GONE) {
             binding.sidecarLayout.setVisibility(View.GONE);
         }
+    }
+
+    private void onEmployeeTypeChanged() {
+        EmployeeType employeeType = Registration.getInstance().getEmployeeType();
+        String bonusText = "";
+        if (employeeType == EmployeeType.MANAGER) {
+            bonusText = "Clients";
+        } else if (employeeType == EmployeeType.TESTER) {
+            bonusText = "Bugs";
+        } else if (employeeType == EmployeeType.PROGRAMMER) {
+            bonusText = "Projects";
+        }
+
+        binding.bonusLabel.setText("Number of " + bonusText);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        switch (parent.getId()) {
+            case R.id.empType:
+                String employeeTypeValue = employeeTypes.get(position);
+                EmployeeType employeeType = Convertor.convertEmployeeType(employeeTypeValue);
+                Registration.getInstance().setEmployeeType(employeeType);
+                onEmployeeTypeChanged();
+                break;
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }

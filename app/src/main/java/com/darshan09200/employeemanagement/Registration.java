@@ -125,6 +125,7 @@ enum VehicleColor {
 public class Registration {
     private static Registration instance;
 
+    private EmployeeType employeeType = EmployeeType.MANAGER;
     private VehicleKind vehicleKind = VehicleKind.CAR;
 
     private Registration() {
@@ -133,6 +134,14 @@ public class Registration {
     public static Registration getInstance() {
         if (instance == null) instance = new Registration();
         return instance;
+    }
+
+    public EmployeeType getEmployeeType() {
+        return employeeType;
+    }
+
+    public void setEmployeeType(EmployeeType employeeType) {
+        this.employeeType = employeeType;
     }
 
     public VehicleKind getVehicle() {

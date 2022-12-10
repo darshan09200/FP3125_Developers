@@ -251,6 +251,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/all_border"
+                        android:gravity="end|center_vertical"
                         android:hint="10"
                         android:minHeight="48dp" />
                 </LinearLayout>
