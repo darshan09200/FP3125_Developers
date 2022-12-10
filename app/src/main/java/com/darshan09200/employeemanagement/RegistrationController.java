@@ -83,7 +83,15 @@ public class RegistrationController implements AdapterView.OnItemSelectedListene
 
         onEmployeeTypeChanged();
 
-        binding.vehicleKind.check(R.id.car);
+        int vehicleKindId = R.id.car;
+        if (Registration.getInstance().getVehicleKind() == VehicleKind.MOTORCYCLE)
+            vehicleKindId = R.id.motorcycle;
+        binding.vehicleKind.check(vehicleKindId);
+
+        binding.vehicleMake.setSelection(getSelectedIndex(vehicleMakes, Registration.getInstance().getVehicleMake().getLabel()));
+        binding.vehicleType.setSelection(getSelectedIndex(vehicleTypes, Registration.getInstance().getVehicleType().getLabel()));
+        binding.vehicleCategory.setSelection(getSelectedIndex(vehicleCategories, Registration.getInstance().getVehicleCategory().getLabel()));
+        binding.vehicleColor.setSelection(getSelectedIndex(vehicleColours, Registration.getInstance().getVehicleColor().getLabel()));
     }
 
     private void showVehicleType() {
@@ -110,6 +118,14 @@ public class RegistrationController implements AdapterView.OnItemSelectedListene
         if (binding.sidecarLayout.getVisibility() != View.GONE) {
             binding.sidecarLayout.setVisibility(View.GONE);
         }
+    }
+
+    private int getSelectedIndex(ArrayList<String> data, String selectedItem) {
+        for (int i = 0; i < data.size(); i++) {
+            String item = data.get(i);
+            if (item.equalsIgnoreCase(selectedItem)) return i;
+        }
+        return 0;
     }
 
     private void onEmployeeTypeChanged() {

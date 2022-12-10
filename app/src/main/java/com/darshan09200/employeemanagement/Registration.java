@@ -149,11 +149,11 @@ public class Registration {
         this.employeeType = employeeType;
     }
 
-    public VehicleKind getVehicle() {
+    public VehicleKind getVehicleKind() {
         return vehicleKind;
     }
 
-    public void setVehicle(VehicleKind vehicleKind) {
+    public void setVehicleKind(VehicleKind vehicleKind) {
         this.vehicleKind = vehicleKind;
     }
 
