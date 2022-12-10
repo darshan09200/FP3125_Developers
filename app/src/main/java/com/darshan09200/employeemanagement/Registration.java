@@ -1,253 +1,256 @@
 package com.darshan09200.employeemanagement;
 
-
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 enum EmployeeType {
-    MANAGER("Manager"),
-    PROGRAMMER("Programmer"),
-    TESTER("Tester");
+	MANAGER("Manager"),
+	PROGRAMMER("Programmer"),
+	TESTER("Tester");
 
-    private final String label;
+	private final String label;
 
-    EmployeeType(String label) {
-        this.label = label;
-    }
+	EmployeeType(String label) {
+		this.label = label;
+	}
 
-    public String getLabel() {
-        return label;
-    }
+	public String getLabel() {
+		return label;
+	}
 }
 
-
 enum VehicleKind {
-    BOTH("Both"),
-    CAR("Car"),
-    MOTORCYCLE("Motorcycle");
+	BOTH("Both"),
+	CAR("Car"),
+	MOTORCYCLE("Motorcycle");
 
-    private final String label;
+	private final String label;
 
-    VehicleKind(String label) {
-        this.label = label;
-    }
+	VehicleKind(String label) {
+		this.label = label;
+	}
 
-    public String getLabel() {
-        return label;
-    }
+	public String getLabel() {
+		return label;
+	}
 }
 
 enum VehicleMake {
-    CHOOSE_MAKE("Please choose a make", VehicleKind.BOTH),
-    KAWASAKI("Kawasaki", VehicleKind.MOTORCYCLE),
-    HONDA("Honda", VehicleKind.BOTH),
-    LAMBORGHINI("Lamborghini", VehicleKind.CAR),
-    BMW("BMW", VehicleKind.CAR),
-    RENAULT("Renault", VehicleKind.CAR),
-    MAZDA("Mazda", VehicleKind.CAR);
+	CHOOSE_MAKE("Please choose a make", VehicleKind.BOTH),
+	KAWASAKI("Kawasaki", VehicleKind.MOTORCYCLE),
+	HONDA("Honda", VehicleKind.BOTH),
+	LAMBORGHINI("Lamborghini", VehicleKind.CAR),
+	BMW("BMW", VehicleKind.CAR),
+	RENAULT("Renault", VehicleKind.CAR),
+	MAZDA("Mazda", VehicleKind.CAR);
 
-    private final String label;
-    private final VehicleKind vehicleKind;
+	private final String label;
+	private final VehicleKind vehicleKind;
 
-    VehicleMake(String label, VehicleKind vehicleKind) {
-        this.label = label;
-        this.vehicleKind = vehicleKind;
-    }
+	VehicleMake(String label, VehicleKind vehicleKind) {
+		this.label = label;
+		this.vehicleKind = vehicleKind;
+	}
 
-    public String getLabel() {
-        return label;
-    }
+	public String getLabel() {
+		return label;
+	}
 
-    public VehicleKind getVehicle() {
-        return vehicleKind;
-    }
+	public VehicleKind getVehicle() {
+		return vehicleKind;
+	}
 }
 
 enum VehicleCategory {
-    CHOSE_CATEGORY("Please choose a category", VehicleKind.BOTH),
-    RACE_MOTORCYCLE("Race Motorcycle", VehicleKind.MOTORCYCLE),
-    NOT_FOR_RACE("Not for Race", VehicleKind.BOTH),
-    FAMILY("Family", VehicleKind.CAR);
+	CHOSE_CATEGORY("Please choose a category", VehicleKind.BOTH),
+	RACE_MOTORCYCLE("Race Motorcycle", VehicleKind.MOTORCYCLE),
+	NOT_FOR_RACE("Not for Race", VehicleKind.BOTH),
+	FAMILY("Family", VehicleKind.CAR);
 
-    private final String label;
-    private final VehicleKind vehicleKind;
+	private final String label;
+	private final VehicleKind vehicleKind;
 
-    VehicleCategory(String label, VehicleKind vehicleKind) {
-        this.label = label;
-        this.vehicleKind = vehicleKind;
-    }
+	VehicleCategory(String label, VehicleKind vehicleKind) {
+		this.label = label;
+		this.vehicleKind = vehicleKind;
+	}
 
-    public String getLabel() {
-        return label;
-    }
+	public String getLabel() {
+		return label;
+	}
 
-    public VehicleKind getVehicle() {
-        return vehicleKind;
-    }
+	public VehicleKind getVehicle() {
+		return vehicleKind;
+	}
 }
 
 enum VehicleType {
-    CHOOSE_TYPE("Please choose a type"),
-    SEDAN("Sedan"),
-    SPORT("Sport"),
-    HATCHBACK("Hatchback"),
-    SUV("SUV");
+	CHOOSE_TYPE("Please choose a type"),
+	SEDAN("Sedan"),
+	SPORT("Sport"),
+	HATCHBACK("Hatchback"),
+	SUV("SUV");
 
-    private final String label;
+	private final String label;
 
-    VehicleType(String label) {
-        this.label = label;
-    }
+	VehicleType(String label) {
+		this.label = label;
+	}
 
-    public String getLabel() {
-        return label;
-    }
+	public String getLabel() {
+		return label;
+	}
 }
 
 enum VehicleColor {
-    CHOOSE_COLOR("Please choose a color"),
-    YELLOW("Yellow"),
-    BLACK("Black"),
-    WHITE("White"),
-    RED("Red");
+	CHOOSE_COLOR("Please choose a color"),
+	YELLOW("Yellow"),
+	BLACK("Black"),
+	WHITE("White"),
+	RED("Red");
 
-    private final String label;
+	private final String label;
 
-    VehicleColor(String label) {
-        this.label = label;
-    }
+	VehicleColor(String label) {
+		this.label = label;
+	}
 
-    public String getLabel() {
-        return label;
-    }
+	public String getLabel() {
+		return label;
+	}
 }
 
-
 public class Registration {
-    private static Registration instance;
+	private static Registration instance;
 
-    private String firstName = "";
-    private EmployeeType employeeType = EmployeeType.MANAGER;
+	private String firstName = "";
+	private LocalDate dob;
+	private EmployeeType employeeType = EmployeeType.MANAGER;
 
-    private VehicleKind vehicleKind = VehicleKind.CAR;
-    private VehicleMake vehicleMake = VehicleMake.CHOOSE_MAKE;
-    private VehicleCategory vehicleCategory = VehicleCategory.CHOSE_CATEGORY;
-    private VehicleType vehicleType = VehicleType.CHOOSE_TYPE;
-    private VehicleColor vehicleColor = VehicleColor.CHOOSE_COLOR;
+	private VehicleKind vehicleKind = VehicleKind.CAR;
+	private VehicleMake vehicleMake = VehicleMake.CHOOSE_MAKE;
+	private VehicleCategory vehicleCategory = VehicleCategory.CHOSE_CATEGORY;
+	private VehicleType vehicleType = VehicleType.CHOOSE_TYPE;
+	private VehicleColor vehicleColor = VehicleColor.CHOOSE_COLOR;
 
-    private Registration() {
-    }
+	private Registration() {
+	}
 
-    public static Registration getInstance() {
-        if (instance == null) instance = new Registration();
-        return instance;
-    }
+	public static Registration getInstance() {
+		if (instance == null)
+			instance = new Registration();
+		return instance;
+	}
 
-    public String getFirstName() {
-        return firstName;
-    }
+	public String getFirstName() {
+		return firstName;
+	}
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 
-    public EmployeeType getEmployeeType() {
-        return employeeType;
-    }
+	public LocalDate getDob() {
+		return dob;
+	}
 
-    public void setEmployeeType(EmployeeType employeeType) {
-        this.employeeType = employeeType;
-    }
+	public void setDob(LocalDate dob) {
+		this.dob = dob;
+	}
 
-    public VehicleKind getVehicleKind() {
-        return vehicleKind;
-    }
+	public EmployeeType getEmployeeType() {
+		return employeeType;
+	}
 
-    public void setVehicleKind(VehicleKind vehicleKind) {
-        this.vehicleKind = vehicleKind;
-    }
+	public void setEmployeeType(EmployeeType employeeType) {
+		this.employeeType = employeeType;
+	}
 
-    public VehicleMake getVehicleMake() {
-        return vehicleMake;
-    }
+	public VehicleKind getVehicleKind() {
+		return vehicleKind;
+	}
 
-    public void setVehicleMake(VehicleMake vehicleMake) {
-        this.vehicleMake = vehicleMake;
-    }
+	public void setVehicleKind(VehicleKind vehicleKind) {
+		this.vehicleKind = vehicleKind;
+	}
 
-    public VehicleCategory getVehicleCategory() {
-        return vehicleCategory;
-    }
+	public VehicleMake getVehicleMake() {
+		return vehicleMake;
+	}
 
-    public void setVehicleCategory(VehicleCategory vehicleCategory) {
-        this.vehicleCategory = vehicleCategory;
-    }
+	public void setVehicleMake(VehicleMake vehicleMake) {
+		this.vehicleMake = vehicleMake;
+	}
 
-    public VehicleType getVehicleType() {
-        return vehicleType;
-    }
+	public VehicleCategory getVehicleCategory() {
+		return vehicleCategory;
+	}
 
-    public void setVehicleType(VehicleType vehicleType) {
-        this.vehicleType = vehicleType;
-    }
+	public void setVehicleCategory(VehicleCategory vehicleCategory) {
+		this.vehicleCategory = vehicleCategory;
+	}
 
-    public VehicleColor getVehicleColor() {
-        return vehicleColor;
-    }
+	public VehicleType getVehicleType() {
+		return vehicleType;
+	}
 
-    public void setVehicleColor(VehicleColor vehicleColor) {
-        this.vehicleColor = vehicleColor;
-    }
+	public void setVehicleType(VehicleType vehicleType) {
+		this.vehicleType = vehicleType;
+	}
 
-    public ArrayList<String> getEmployeeTypeData() {
-        ArrayList<String> employeeTypes = new ArrayList<>();
+	public VehicleColor getVehicleColor() {
+		return vehicleColor;
+	}
 
-        for (EmployeeType employeeType :
-                EmployeeType.values()) {
-            employeeTypes.add(employeeType.getLabel());
-        }
-        return employeeTypes;
-    }
+	public void setVehicleColor(VehicleColor vehicleColor) {
+		this.vehicleColor = vehicleColor;
+	}
 
-    public ArrayList<String> getVehicleMakeData() {
-        ArrayList<String> vehicleMakes = new ArrayList<>();
+	public ArrayList<String> getEmployeeTypeData() {
+		ArrayList<String> employeeTypes = new ArrayList<>();
 
-        for (VehicleMake vehicleMake :
-                VehicleMake.values()) {
-            if (vehicleMake.getVehicle() == vehicleKind || vehicleMake.getVehicle() == VehicleKind.BOTH)
-                vehicleMakes.add(vehicleMake.getLabel());
-        }
-        return vehicleMakes;
-    }
+		for (EmployeeType employeeType : EmployeeType.values()) {
+			employeeTypes.add(employeeType.getLabel());
+		}
+		return employeeTypes;
+	}
 
-    public ArrayList<String> getVehicleCategoryData() {
-        ArrayList<String> vehicleCategories = new ArrayList<>();
+	public ArrayList<String> getVehicleMakeData() {
+		ArrayList<String> vehicleMakes = new ArrayList<>();
 
-        for (VehicleCategory vehicleCategory :
-                VehicleCategory.values()) {
-            if (vehicleCategory.getVehicle() == vehicleKind || vehicleCategory.getVehicle() == VehicleKind.BOTH)
-                vehicleCategories.add(vehicleCategory.getLabel());
-        }
-        return vehicleCategories;
-    }
+		for (VehicleMake vehicleMake : VehicleMake.values()) {
+			if (vehicleMake.getVehicle() == vehicleKind || vehicleMake.getVehicle() == VehicleKind.BOTH)
+				vehicleMakes.add(vehicleMake.getLabel());
+		}
+		return vehicleMakes;
+	}
 
-    public ArrayList<String> getVehicleTypeData() {
-        ArrayList<String> vehicleTypes = new ArrayList<>();
+	public ArrayList<String> getVehicleCategoryData() {
+		ArrayList<String> vehicleCategories = new ArrayList<>();
 
-        for (VehicleType vehicleType :
-                VehicleType.values()) {
-            vehicleTypes.add(vehicleType.getLabel());
-        }
-        return vehicleTypes;
-    }
+		for (VehicleCategory vehicleCategory : VehicleCategory.values()) {
+			if (vehicleCategory.getVehicle() == vehicleKind || vehicleCategory.getVehicle() == VehicleKind.BOTH)
+				vehicleCategories.add(vehicleCategory.getLabel());
+		}
+		return vehicleCategories;
+	}
 
-    public ArrayList<String> getVehicleColorData() {
-        ArrayList<String> vehicleColors = new ArrayList<>();
+	public ArrayList<String> getVehicleTypeData() {
+		ArrayList<String> vehicleTypes = new ArrayList<>();
 
-        for (VehicleColor vehicleColor :
-                VehicleColor.values()) {
-            vehicleColors.add(vehicleColor.getLabel());
-        }
-        return vehicleColors;
-    }
+		for (VehicleType vehicleType : VehicleType.values()) {
+			vehicleTypes.add(vehicleType.getLabel());
+		}
+		return vehicleTypes;
+	}
+
+	public ArrayList<String> getVehicleColorData() {
+		ArrayList<String> vehicleColors = new ArrayList<>();
+
+		for (VehicleColor vehicleColor : VehicleColor.values()) {
+			vehicleColors.add(vehicleColor.getLabel());
+		}
+		return vehicleColors;
+	}
 
 }
