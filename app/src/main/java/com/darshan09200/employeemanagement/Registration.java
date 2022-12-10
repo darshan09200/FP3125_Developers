@@ -1,6 +1,7 @@
 package com.darshan09200.employeemanagement;
 
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 enum EmployeeType {
@@ -125,6 +126,7 @@ enum VehicleColor {
 public class Registration {
     private static Registration instance;
 
+    private LocalDate dob;
     private EmployeeType employeeType = EmployeeType.MANAGER;
 
     private VehicleKind vehicleKind = VehicleKind.CAR;
@@ -139,6 +141,14 @@ public class Registration {
     public static Registration getInstance() {
         if (instance == null) instance = new Registration();
         return instance;
+    }
+
+    public LocalDate getDob() {
+        return dob;
+    }
+
+    public void setDob(LocalDate dob) {
+        this.dob = dob;
     }
 
     public EmployeeType getEmployeeType() {

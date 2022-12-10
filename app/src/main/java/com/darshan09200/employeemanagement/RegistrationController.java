@@ -1,16 +1,22 @@
 package com.darshan09200.employeemanagement;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.RadioGroup;
 
 import com.darshan09200.employeemanagement.databinding.ActivityRegistrationBinding;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
 
-public class RegistrationController implements AdapterView.OnItemSelectedListener, RadioGroup.OnCheckedChangeListener {
+public class RegistrationController implements AdapterView.OnItemSelectedListener, RadioGroup.OnCheckedChangeListener, DatePickerDialog.OnDateSetListener, View.OnClickListener {
+    DatePickerDialog datePickerDialog;
 
     ActivityRegistrationBinding binding;
 
@@ -31,6 +37,15 @@ public class RegistrationController implements AdapterView.OnItemSelectedListene
 
     public RegistrationController(Context context, ActivityRegistrationBinding binding) {
         this.binding = binding;
+
+        Calendar calendar = Calendar.getInstance();
+        datePickerDialog = new DatePickerDialog(context, this,
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH)
+        );
+
+        binding.dob.setOnClickListener(this);
 
         employeeTypes = Registration.getInstance().getEmployeeTypeData();
         employeeTypeAdapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, employeeTypes);
@@ -198,5 +213,23 @@ public class RegistrationController implements AdapterView.OnItemSelectedListene
         vehicleCategories.clear();
         vehicleCategories.addAll(Registration.getInstance().getVehicleCategoryData());
         binding.vehicleCategory.setSelection(0);
+    }
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        Registration.getInstance().setDob(LocalDate.of(year, month + 1, dayOfMonth));
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String formattedString = Registration.getInstance().getDob().format(formatter);
+        binding.dob.setText(formattedString);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.dob:
+                if (!datePickerDialog.isShowing()) datePickerDialog.show();
+                break;
+        }
     }
 }
