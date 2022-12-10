@@ -129,6 +129,7 @@ public class Registration {
     private VehicleKind vehicleKind = VehicleKind.CAR;
     private VehicleMake vehicleMake = VehicleMake.CHOOSE_MAKE;
     private VehicleCategory vehicleCategory = VehicleCategory.CHOSE_CATEGORY;
+    private VehicleType vehicleType = VehicleType.CHOOSE_TYPE;
 
     private Registration() {
     }
@@ -168,6 +169,14 @@ public class Registration {
 
     public void setVehicleCategory(VehicleCategory vehicleCategory) {
         this.vehicleCategory = vehicleCategory;
+    }
+
+    public VehicleType getVehicleType() {
+        return vehicleType;
+    }
+
+    public void setVehicleType(VehicleType vehicleType) {
+        this.vehicleType = vehicleType;
     }
 
     public ArrayList<String> getEmployeeTypeData() {
