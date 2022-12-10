@@ -4,12 +4,13 @@ import android.content.Context;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.RadioGroup;
 
 import com.darshan09200.employeemanagement.databinding.ActivityRegistrationBinding;
 
 import java.util.ArrayList;
 
-public class RegistrationController implements AdapterView.OnItemSelectedListener {
+public class RegistrationController implements AdapterView.OnItemSelectedListener, RadioGroup.OnCheckedChangeListener {
 
     ActivityRegistrationBinding binding;
 
@@ -39,11 +40,13 @@ public class RegistrationController implements AdapterView.OnItemSelectedListene
         vehicleMakes = Registration.getInstance().getVehicleMakeData();
         vehicleMakeAdapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, vehicleMakes);
         vehicleMakeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        vehicleMakeAdapter.setNotifyOnChange(true);
         binding.vehicleMake.setAdapter(vehicleMakeAdapter);
 
         vehicleCategories = Registration.getInstance().getVehicleCategoryData();
         vehicleCategoryAdapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, vehicleCategories);
         vehicleCategoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        vehicleCategoryAdapter.setNotifyOnChange(true);
         binding.vehicleCategory.setAdapter(vehicleCategoryAdapter);
 
         vehicleTypes = Registration.getInstance().getVehicleTypeData();
@@ -56,15 +59,7 @@ public class RegistrationController implements AdapterView.OnItemSelectedListene
         vehicleColourAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.vehicleColor.setAdapter(vehicleColourAdapter);
 
-        binding.vehicleKind.setOnCheckedChangeListener((group, checkedId) -> {
-            if (checkedId == R.id.motorcycle) {
-                showSidecar();
-                hideVehicleType();
-            } else {
-                showVehicleType();
-                hideSidecar();
-            }
-        });
+        binding.vehicleKind.setOnCheckedChangeListener(this);
 
         binding.empType.setOnItemSelectedListener(this);
 
@@ -182,5 +177,26 @@ public class RegistrationController implements AdapterView.OnItemSelectedListene
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+
+    @Override
+    public void onCheckedChanged(RadioGroup group, int checkedId) {
+        if (checkedId == R.id.motorcycle) {
+            Registration.getInstance().setVehicleKind(VehicleKind.MOTORCYCLE);
+            showSidecar();
+            hideVehicleType();
+        } else {
+            Registration.getInstance().setVehicleKind(VehicleKind.CAR);
+            showVehicleType();
+            hideSidecar();
+        }
+
+        vehicleMakes.clear();
+        vehicleMakes.addAll(Registration.getInstance().getVehicleMakeData());
+        binding.vehicleMake.setSelection(0);
+
+        vehicleCategories.clear();
+        vehicleCategories.addAll(Registration.getInstance().getVehicleCategoryData());
+        binding.vehicleCategory.setSelection(0);
     }
 }
