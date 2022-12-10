@@ -21,6 +21,9 @@ public class RegistrationController {
     ArrayList<String> vehicleType;
     ArrayAdapter<String> vehicleTypeAdapter;
 
+    ArrayList<String> vehicleColour;
+    ArrayAdapter<String> vehicleColourAdapter;
+
     public RegistrationController(Context context, ActivityRegistrationBinding binding) {
         this.binding = binding;
 
@@ -30,18 +33,22 @@ public class RegistrationController {
         binding.vehicleMake.setAdapter(vehicleMakeAdapter);
 
         vehicleCategory = Registration.getInstance().getVehicleCategoryData();
-        vehicleCategoryAdapter = new ArrayAdapter(context, android.R.layout.simple_spinner_item,vehicleCategory);
+        vehicleCategoryAdapter = new ArrayAdapter(context, android.R.layout.simple_spinner_item, vehicleCategory);
         vehicleCategoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.vehicleCategory.setAdapter(vehicleCategoryAdapter);
 
         vehicleType = Registration.getInstance().getVehicleTypeData();
-        vehicleTypeAdapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item,vehicleType);
+        vehicleTypeAdapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, vehicleType);
         vehicleTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.vehicleType.setAdapter(vehicleTypeAdapter);
 
+        vehicleColour = Registration.getInstance().getVehicleColorData();
+        vehicleColourAdapter = new ArrayAdapter(context, android.R.layout.simple_spinner_item, vehicleColour);
+        vehicleColourAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        binding.vehicleColor.setAdapter(vehicleColourAdapter);
+
         resetUI();
     }
-
 
 
     public void resetUI() {
