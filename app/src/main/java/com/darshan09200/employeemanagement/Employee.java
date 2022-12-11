@@ -10,15 +10,16 @@ public abstract class Employee {
     private final String name;
     private LocalDate dob;
     private double occupationRate;
+    private double monthlySalary;
     private EmployeeType role;
+    private Vehicle vehicle;
 
-    private final Vehicle vehicle;
-
-    public Employee(String name, LocalDate dob, double occupationRate, EmployeeType role, Vehicle vehicle) {
+    public Employee(String name, LocalDate dob, double occupationRate, double monthlySalary, EmployeeType role, Vehicle vehicle) {
         this.empId = String.format("EMP-%03d", ++EMP_COUNT);
         this.name = name;
         this.dob = dob;
         this.occupationRate = formatOccupationRate(occupationRate);
+        this.occupationRate = monthlySalary;
         this.role = role;
         this.vehicle = vehicle;
 
@@ -45,7 +46,7 @@ public abstract class Employee {
         return Period.between(dob, LocalDate.now()).getYears();
     }
 
-    static double formatOccupationRate(double occupationRate) {
+    private static double formatOccupationRate(double occupationRate) {
         return Math.max(0, Math.min(occupationRate, DEFAULT_OCCUPATION_RATE));
     }
 
@@ -65,13 +66,24 @@ public abstract class Employee {
         this.role = role;
     }
 
-    public double getMonthlyIncome() {
-        double monthlySalary = 0;
+    public double getMonthlySalary() {
         return monthlySalary;
     }
 
+    public void setMonthlySalary(double monthlySalary) {
+        this.monthlySalary = monthlySalary;
+    }
+
     public double getAnnualIncome() {
-        return getMonthlyIncome() * 12 * (getOccupationRate() / 100);
+        return getMonthlySalary() * 12 * (getOccupationRate() / 100);
+    }
+
+    public Vehicle getVehicle() {
+        return vehicle;
+    }
+
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
     }
 
     @Override
