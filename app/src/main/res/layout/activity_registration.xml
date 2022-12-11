@@ -424,7 +424,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/all_border"
-                    android:hint="3VS - A22"
+                    android:hint="3VS-A22"
+                    android:inputType="textCapCharacters"
                     android:minHeight="48dp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>

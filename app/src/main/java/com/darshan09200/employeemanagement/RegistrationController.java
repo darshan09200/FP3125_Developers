@@ -307,6 +307,11 @@ public class RegistrationController implements AdapterView.OnItemSelectedListene
         Registration.getInstance().setSidecarChecked(isChecked);
     }
 
+    private boolean isValidPlateNumber(String text) {
+        String pattern = "^[A-Z0-9]{3,4}[- ][A-Z0-9]{3,4}$";
+        return text.matches(pattern);
+    }
+
     public boolean isNumeric(String str) {
         try {
             Double.parseDouble(str);
@@ -318,20 +323,20 @@ public class RegistrationController implements AdapterView.OnItemSelectedListene
 
     private void validate() {
         String empId = Database.getInstance().getNewEmpId();
-        String firstName = Registration.getInstance().getFirstName();
-        String lastName = Registration.getInstance().getLastName();
+        String firstName = Registration.getInstance().getFirstName().trim();
+        String lastName = Registration.getInstance().getLastName().trim();
         LocalDate dob = Registration.getInstance().getDob();
-        String monthlySalary = Registration.getInstance().getMonthlySalary();
-        String occupationRate = Registration.getInstance().getOccupationRate();
+        String monthlySalary = Registration.getInstance().getMonthlySalary().trim();
+        String occupationRate = Registration.getInstance().getOccupationRate().trim();
         EmployeeType employeeType = Registration.getInstance().getEmployeeType();
-        String bonusValue = Registration.getInstance().getBonusValue();
+        String bonusValue = Registration.getInstance().getBonusValue().trim();
         VehicleKind vehicleKind = Registration.getInstance().getVehicleKind();
         VehicleMake vehicleMake = Registration.getInstance().getVehicleMake();
         VehicleCategory vehicleCategory = Registration.getInstance().getVehicleCategory();
         VehicleType vehicleType = Registration.getInstance().getVehicleType();
         VehicleColor vehicleColor = Registration.getInstance().getVehicleColor();
         Boolean isSidecarChecked = Registration.getInstance().getSidecarChecked();
-        String vehiclePlate = Registration.getInstance().getVehiclePlate();
+        String vehiclePlate = Registration.getInstance().getVehiclePlate().trim();
 
         String msg = "";
         if (firstName.isEmpty()) msg = "Please enter first name";
@@ -349,8 +354,9 @@ public class RegistrationController implements AdapterView.OnItemSelectedListene
             msg = VehicleType.CHOOSE_TYPE.getLabel();
         else if (vehicleColor == VehicleColor.CHOOSE_COLOR)
             msg = VehicleColor.CHOOSE_COLOR.getLabel();
-        else if (vehiclePlate.isEmpty()) msg = "Please enter vehicle plate";
-
+        else if (vehiclePlate.isEmpty()) msg = "Please enter vehicle plate number";
+        else if(!isValidPlateNumber(vehiclePlate)) msg = "Please enter valid vehicle plate number";
+        System.out.println(vehiclePlate);
         if (msg.length() > 0) {
             Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
         } else {
