@@ -124,30 +124,46 @@ enum VehicleColor {
 public class Registration {
     private static Registration instance;
 
-    private String firstName = "";
-    private String lastName = "";
-    private LocalDate dob = LocalDate.now().minusYears(16);
-    private String monthlySalary = "";
-    private String occupationRate = "";
-    private EmployeeType employeeType = EmployeeType.MANAGER;
-    private String numberOfClients = "";
-    private String numberOfProjects = "";
-    private String numberOfBugs = "";
-    private VehicleKind vehicleKind = VehicleKind.CAR;
-    private VehicleMake vehicleMake = VehicleMake.CHOOSE_MAKE;
-    private VehicleCategory vehicleCategory = VehicleCategory.CHOSE_CATEGORY;
-    private VehicleType vehicleType = VehicleType.CHOOSE_TYPE;
-    private VehicleColor vehicleColor = VehicleColor.CHOOSE_COLOR;
-    private Boolean isSidecarChecked = false;
-    private String vehiclePlate = "";
+    private String firstName;
+    private String lastName;
+    private LocalDate dob;
+    private String monthlySalary;
+    private String occupationRate;
+    private EmployeeType employeeType;
+    private String bonusValue;
+    private VehicleKind vehicleKind;
+    private VehicleMake vehicleMake;
+    private VehicleCategory vehicleCategory;
+    private VehicleType vehicleType;
+    private VehicleColor vehicleColor;
+    private Boolean isSidecarChecked;
+    private String vehiclePlate;
 
     private Registration() {
+        resetFields();
     }
 
     public static Registration getInstance() {
         if (instance == null)
             instance = new Registration();
         return instance;
+    }
+
+    public void resetFields(){
+        firstName = "";
+        lastName = "";
+        dob = LocalDate.now().minusYears(16);
+        monthlySalary = "";
+        occupationRate = "";
+        employeeType = EmployeeType.MANAGER;
+        bonusValue = "";
+        vehicleKind = VehicleKind.CAR;
+        vehicleMake = VehicleMake.CHOOSE_MAKE;
+        vehicleCategory = VehicleCategory.CHOSE_CATEGORY;
+        vehicleType = VehicleType.CHOOSE_TYPE;
+        vehicleColor = VehicleColor.CHOOSE_COLOR;
+        isSidecarChecked = false;
+        vehiclePlate = "";
     }
 
     public String getFirstName() {
@@ -196,41 +212,12 @@ public class Registration {
         this.occupationRate = occupationRate;
     }
 
-    public String getNumberOfClients() {
-        return numberOfClients;
-    }
-
-    public void setNumberOfClients(String numberOfClients) {
-        this.numberOfClients = numberOfClients;
-    }
-
-    public String getNumberOfProjects() {
-        return numberOfProjects;
-    }
-
-    public void setNumberOfProjects(String numberOfProjects) {
-        this.numberOfProjects = numberOfProjects;
-    }
-
-    public String getNumberOfBugs() {
-        return numberOfBugs;
-    }
-
-    public void setNumberOfBugs(String numberOfBugs) {
-        this.numberOfBugs = numberOfBugs;
-    }
-
     public String getBonusValue() {
-        if (employeeType == EmployeeType.MANAGER) return getNumberOfClients();
-        else if (employeeType == EmployeeType.PROGRAMMER) return getNumberOfProjects();
-        else if (employeeType == EmployeeType.TESTER) return getNumberOfBugs();
-        return "";
+        return bonusValue;
     }
 
     public void setBonusValue(String bonusValue) {
-        if (employeeType == EmployeeType.MANAGER) setNumberOfClients(bonusValue);
-        else if (employeeType == EmployeeType.PROGRAMMER) setNumberOfProjects(bonusValue);
-        else if (employeeType == EmployeeType.TESTER) setNumberOfBugs(bonusValue);
+        this.bonusValue = bonusValue;
     }
 
     public EmployeeType getEmployeeType() {
@@ -343,6 +330,5 @@ public class Registration {
         }
         return vehicleColors;
     }
-
 
 }

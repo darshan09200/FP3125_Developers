@@ -24,6 +24,7 @@ public class Database {
 
     public void addEmployee(Employee employee) {
         employees.add(employee);
+        Registration.getInstance().resetFields();
     }
 
     public String getNewEmpId() {
