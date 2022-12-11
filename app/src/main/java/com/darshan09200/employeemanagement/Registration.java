@@ -126,7 +126,7 @@ public class Registration {
 
     private String firstName = "";
     private String lastName = "";
-    private LocalDate dob = LocalDate.now();
+    private LocalDate dob = LocalDate.now().minusYears(16);
     private String monthlySalary = "";
     private String occupationRate = "";
     private EmployeeType employeeType = EmployeeType.MANAGER;
