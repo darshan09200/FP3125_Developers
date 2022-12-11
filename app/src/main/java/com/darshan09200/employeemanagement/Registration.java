@@ -3,7 +3,6 @@ package com.darshan09200.employeemanagement;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 
 enum EmployeeType {
     MANAGER("Manager"),
@@ -128,18 +127,19 @@ public class Registration {
     private String firstName = "";
     private String lastName = "";
     private LocalDate dob = LocalDate.now();
-    private String monthlySalary;
-    private String occupationRate;
+    private String monthlySalary = "";
+    private String occupationRate = "";
     private EmployeeType employeeType = EmployeeType.MANAGER;
-    private String numberOfClients;
-    private String numberOfProjects;
-    private String numberOfBugs;
-    private String vehiclePlate;
+    private String numberOfClients = "";
+    private String numberOfProjects = "";
+    private String numberOfBugs = "";
     private VehicleKind vehicleKind = VehicleKind.CAR;
     private VehicleMake vehicleMake = VehicleMake.CHOOSE_MAKE;
     private VehicleCategory vehicleCategory = VehicleCategory.CHOSE_CATEGORY;
     private VehicleType vehicleType = VehicleType.CHOOSE_TYPE;
     private VehicleColor vehicleColor = VehicleColor.CHOOSE_COLOR;
+    private Boolean isSidecarChecked = false;
+    private String vehiclePlate = "";
 
     private Registration() {
     }
@@ -287,6 +287,14 @@ public class Registration {
 
     public void setVehiclePlate(String vehiclePlate) {
         this.vehiclePlate = vehiclePlate;
+    }
+
+    public Boolean getSidecarChecked() {
+        return isSidecarChecked;
+    }
+
+    public void setSidecarChecked(Boolean sidecarChecked) {
+        isSidecarChecked = sidecarChecked;
     }
 
     public ArrayList<String> getEmployeeTypeData() {

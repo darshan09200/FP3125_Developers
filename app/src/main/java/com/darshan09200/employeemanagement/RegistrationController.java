@@ -7,21 +7,24 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.darshan09200.employeemanagement.databinding.ActivityRegistrationBinding;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 
 public class RegistrationController implements AdapterView.OnItemSelectedListener, RadioGroup.OnCheckedChangeListener,
-        TextWatcher, DatePickerDialog.OnDateSetListener, View.OnClickListener {
-    DatePickerDialog datePickerDialog;
+        TextWatcher, DatePickerDialog.OnDateSetListener, View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 
     ActivityRegistrationBinding binding;
+    Context context;
+
+    DatePickerDialog datePickerDialog;
 
     ArrayList<String> employeeTypes;
     ArrayAdapter<String> employeeTypeAdapter;
@@ -40,9 +43,7 @@ public class RegistrationController implements AdapterView.OnItemSelectedListene
 
     public RegistrationController(Context context, ActivityRegistrationBinding binding) {
         this.binding = binding;
-
-        binding.firstName.addTextChangedListener(this);
-        binding.lastName.addTextChangedListener(this);
+        this.context = context;
 
         Calendar calendar = Calendar.getInstance();
         datePickerDialog = new DatePickerDialog(context, this,
@@ -50,49 +51,53 @@ public class RegistrationController implements AdapterView.OnItemSelectedListene
                 calendar.get(Calendar.MONTH),
                 calendar.get(Calendar.DAY_OF_MONTH));
 
+        binding.firstName.addTextChangedListener(this);
+        binding.lastName.addTextChangedListener(this);
         binding.dob.setOnClickListener(this);
 
         binding.monthlySalary.addTextChangedListener(this);
         binding.occupationRate.addTextChangedListener(this);
-        binding.bonus.addTextChangedListener(this);
-        binding.vehiclePlate.addTextChangedListener(this);
 
+        binding.empType.setOnItemSelectedListener(this);
         employeeTypes = Registration.getInstance().getEmployeeTypeData();
         employeeTypeAdapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, employeeTypes);
         employeeTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.empType.setAdapter(employeeTypeAdapter);
+
+        binding.bonus.addTextChangedListener(this);
+
+        binding.vehicleKind.setOnCheckedChangeListener(this);
 
         vehicleMakes = Registration.getInstance().getVehicleMakeData();
         vehicleMakeAdapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, vehicleMakes);
         vehicleMakeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         vehicleMakeAdapter.setNotifyOnChange(true);
         binding.vehicleMake.setAdapter(vehicleMakeAdapter);
+        binding.vehicleMake.setOnItemSelectedListener(this);
 
         vehicleCategories = Registration.getInstance().getVehicleCategoryData();
         vehicleCategoryAdapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, vehicleCategories);
         vehicleCategoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         vehicleCategoryAdapter.setNotifyOnChange(true);
         binding.vehicleCategory.setAdapter(vehicleCategoryAdapter);
+        binding.vehicleCategory.setOnItemSelectedListener(this);
 
         vehicleTypes = Registration.getInstance().getVehicleTypeData();
         vehicleTypeAdapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, vehicleTypes);
         vehicleTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.vehicleType.setAdapter(vehicleTypeAdapter);
+        binding.vehicleType.setOnItemSelectedListener(this);
 
         vehicleColours = Registration.getInstance().getVehicleColorData();
         vehicleColourAdapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, vehicleColours);
         vehicleColourAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.vehicleColor.setAdapter(vehicleColourAdapter);
-
-        binding.vehicleKind.setOnCheckedChangeListener(this);
-
-        binding.empType.setOnItemSelectedListener(this);
-
-        binding.vehicleMake.setOnItemSelectedListener(this);
-        binding.vehicleCategory.setOnItemSelectedListener(this);
-        binding.vehicleType.setOnItemSelectedListener(this);
         binding.vehicleColor.setOnItemSelectedListener(this);
 
+        binding.sidecar.setOnCheckedChangeListener(this);
+        binding.vehiclePlate.addTextChangedListener(this);
+
+        binding.submit.setOnClickListener(this);
         resetUI();
     }
 
@@ -105,11 +110,8 @@ public class RegistrationController implements AdapterView.OnItemSelectedListene
         binding.monthlySalary.setText(Registration.getInstance().getMonthlySalary());
         binding.occupationRate.setText(Registration.getInstance().getOccupationRate());
         binding.bonus.setText(Registration.getInstance().getBonusValue());
-
         binding.empType
                 .setSelection(getSelectedIndex(employeeTypes, Registration.getInstance().getEmployeeType().getLabel()));
-
-        binding.vehiclePlate.setText(Registration.getInstance().getVehiclePlate());
         int vehicleKindId = R.id.car;
         if (Registration.getInstance().getVehicleKind() == VehicleKind.MOTORCYCLE)
             vehicleKindId = R.id.motorcycle;
@@ -123,6 +125,8 @@ public class RegistrationController implements AdapterView.OnItemSelectedListene
                 getSelectedIndex(vehicleCategories, Registration.getInstance().getVehicleCategory().getLabel()));
         binding.vehicleColor.setSelection(
                 getSelectedIndex(vehicleColours, Registration.getInstance().getVehicleColor().getLabel()));
+        binding.sidecar.setChecked(Registration.getInstance().getSidecarChecked());
+        binding.vehiclePlate.setText(Registration.getInstance().getVehiclePlate());
     }
 
     private void showVehicleType() {
@@ -240,8 +244,6 @@ public class RegistrationController implements AdapterView.OnItemSelectedListene
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         Registration.getInstance().setDob(LocalDate.of(year, month + 1, dayOfMonth));
-
-
         binding.dob.setText(Registration.getInstance().getFormattedDate());
     }
 
@@ -251,6 +253,9 @@ public class RegistrationController implements AdapterView.OnItemSelectedListene
             case R.id.dob:
                 if (!datePickerDialog.isShowing())
                     datePickerDialog.show();
+                break;
+            case R.id.submit:
+                validate();
                 break;
         }
     }
@@ -281,6 +286,20 @@ public class RegistrationController implements AdapterView.OnItemSelectedListene
 
     }
 
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        Registration.getInstance().setSidecarChecked(isChecked);
+    }
+
+    public boolean isNumeric(String str) {
+        try {
+            Double.parseDouble(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
     private void validate() {
         String firstName = Registration.getInstance().getFirstName();
         String lastName = Registration.getInstance().getLastName();
@@ -288,14 +307,35 @@ public class RegistrationController implements AdapterView.OnItemSelectedListene
         String monthlySalary = Registration.getInstance().getMonthlySalary();
         String occupationRate = Registration.getInstance().getOccupationRate();
         EmployeeType employeeType = Registration.getInstance().getEmployeeType();
-        String numberOfClients = Registration.getInstance().getNumberOfClients();
-        String numberOfProjects = Registration.getInstance().getNumberOfProjects();
-        String numberOfBugs = Registration.getInstance().getNumberOfBugs();
-        String vehiclePlate = Registration.getInstance().getVehiclePlate();
+        String bonusValue = Registration.getInstance().getBonusValue();
         VehicleKind vehicleKind = Registration.getInstance().getVehicleKind();
         VehicleMake vehicleMake = Registration.getInstance().getVehicleMake();
         VehicleCategory vehicleCategory = Registration.getInstance().getVehicleCategory();
         VehicleType vehicleType = Registration.getInstance().getVehicleType();
         VehicleColor vehicleColor = Registration.getInstance().getVehicleColor();
+        Boolean isSidecarChecked = Registration.getInstance().getSidecarChecked();
+        String vehiclePlate = Registration.getInstance().getVehiclePlate();
+
+        String msg = "";
+        if (firstName.isEmpty()) msg = "Please enter first name";
+        else if (lastName.isEmpty()) msg = "Please enter last name";
+        else if (monthlySalary.isEmpty()) msg = "Please enter monthly salary";
+        else if (!isNumeric(monthlySalary)) msg = "Please enter valid monthly salary";
+        else if (occupationRate.isEmpty()) msg = "Please enter occupation rate";
+        else if (!isNumeric(occupationRate)) msg = "Please enter valid occupation rate";
+        else if (bonusValue.isEmpty()) msg = "Please enter value";
+        else if (!isNumeric(bonusValue)) msg = "Please enter valid value";
+        else if (vehicleMake == VehicleMake.CHOOSE_MAKE) msg = VehicleMake.CHOOSE_MAKE.getLabel();
+        else if (vehicleCategory == VehicleCategory.CHOSE_CATEGORY)
+            msg = VehicleCategory.CHOSE_CATEGORY.getLabel();
+        else if (vehicleKind == VehicleKind.CAR && vehicleType == VehicleType.CHOOSE_TYPE)
+            msg = VehicleType.CHOOSE_TYPE.getLabel();
+        else if (vehicleColor == VehicleColor.CHOOSE_COLOR)
+            msg = VehicleColor.CHOOSE_COLOR.getLabel();
+        else if (vehiclePlate.isEmpty()) msg = "Please enter vehicle plate";
+
+        if (msg.length() > 0) {
+            Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+        }
     }
 }
