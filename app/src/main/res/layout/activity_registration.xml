@@ -172,6 +172,7 @@
                         android:background="@drawable/all_border"
                         android:drawableStart="@drawable/ic_dollar"
                         android:drawablePadding="8dp"
+                        android:inputType="numberDecimal"
                         android:hint="3000"
                         android:minHeight="48dp" />
                 </LinearLayout>
@@ -199,6 +200,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:inputType="numberDecimal"
                         android:background="@drawable/all_border"
                         android:drawableEnd="@drawable/ic_percent"
                         android:drawablePadding="8dp"
@@ -253,6 +255,7 @@
                         android:background="@drawable/all_border"
                         android:gravity="end|center_vertical"
                         android:hint="10"
+                        android:inputType="number"
                         android:minHeight="48dp" />
                 </LinearLayout>
 

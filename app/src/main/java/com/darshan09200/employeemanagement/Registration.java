@@ -135,7 +135,6 @@ public class Registration {
     private String numberOfProjects;
     private String numberOfBugs;
     private String vehiclePlate;
-
     private VehicleKind vehicleKind = VehicleKind.CAR;
     private VehicleMake vehicleMake = VehicleMake.CHOOSE_MAKE;
     private VehicleCategory vehicleCategory = VehicleCategory.CHOSE_CATEGORY;
@@ -336,5 +335,6 @@ public class Registration {
         }
         return vehicleColors;
     }
+
 
 }

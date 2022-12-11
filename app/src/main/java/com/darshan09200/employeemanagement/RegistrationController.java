@@ -280,4 +280,22 @@ public class RegistrationController implements AdapterView.OnItemSelectedListene
     public void afterTextChanged(Editable s) {
 
     }
+
+    private void validate() {
+        String firstName = Registration.getInstance().getFirstName();
+        String lastName = Registration.getInstance().getLastName();
+        LocalDate dob = Registration.getInstance().getDob();
+        String monthlySalary = Registration.getInstance().getMonthlySalary();
+        String occupationRate = Registration.getInstance().getOccupationRate();
+        EmployeeType employeeType = Registration.getInstance().getEmployeeType();
+        String numberOfClients = Registration.getInstance().getNumberOfClients();
+        String numberOfProjects = Registration.getInstance().getNumberOfProjects();
+        String numberOfBugs = Registration.getInstance().getNumberOfBugs();
+        String vehiclePlate = Registration.getInstance().getVehiclePlate();
+        VehicleKind vehicleKind = Registration.getInstance().getVehicleKind();
+        VehicleMake vehicleMake = Registration.getInstance().getVehicleMake();
+        VehicleCategory vehicleCategory = Registration.getInstance().getVehicleCategory();
+        VehicleType vehicleType = Registration.getInstance().getVehicleType();
+        VehicleColor vehicleColor = Registration.getInstance().getVehicleColor();
+    }
 }
