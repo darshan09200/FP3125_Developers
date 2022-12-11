@@ -134,6 +134,7 @@ public class Registration {
     private String numberOfClients;
     private String numberOfProjects;
     private String numberOfBugs;
+    private String vehiclePlate;
 
     private VehicleKind vehicleKind = VehicleKind.CAR;
     private VehicleMake vehicleMake = VehicleMake.CHOOSE_MAKE;
@@ -279,6 +280,14 @@ public class Registration {
 
     public void setVehicleColor(VehicleColor vehicleColor) {
         this.vehicleColor = vehicleColor;
+    }
+
+    public String getVehiclePlate() {
+        return vehiclePlate;
+    }
+
+    public void setVehiclePlate(String vehiclePlate) {
+        this.vehiclePlate = vehiclePlate;
     }
 
     public ArrayList<String> getEmployeeTypeData() {

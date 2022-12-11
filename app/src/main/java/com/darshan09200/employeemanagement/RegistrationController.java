@@ -55,6 +55,7 @@ public class RegistrationController implements AdapterView.OnItemSelectedListene
         binding.monthlySalary.addTextChangedListener(this);
         binding.occupationRate.addTextChangedListener(this);
         binding.bonus.addTextChangedListener(this);
+        binding.vehiclePlate.addTextChangedListener(this);
 
         employeeTypes = Registration.getInstance().getEmployeeTypeData();
         employeeTypeAdapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, employeeTypes);
@@ -108,6 +109,7 @@ public class RegistrationController implements AdapterView.OnItemSelectedListene
         binding.empType
                 .setSelection(getSelectedIndex(employeeTypes, Registration.getInstance().getEmployeeType().getLabel()));
 
+        binding.vehiclePlate.setText(Registration.getInstance().getVehiclePlate());
         int vehicleKindId = R.id.car;
         if (Registration.getInstance().getVehicleKind() == VehicleKind.MOTORCYCLE)
             vehicleKindId = R.id.motorcycle;
@@ -270,6 +272,8 @@ public class RegistrationController implements AdapterView.OnItemSelectedListene
             Registration.getInstance().setOccupationRate(s.toString());
         else if (binding.bonus.isFocused())
             Registration.getInstance().setBonusValue(s.toString());
+        else if (binding.vehiclePlate.isFocused())
+            Registration.getInstance().setVehiclePlate(s.toString());
     }
 
     @Override
