@@ -118,7 +118,7 @@ public class RegistrationController implements AdapterView.OnItemSelectedListene
     }
 
     public void resetUI() {
-        binding.empId.setText("123");
+        binding.empId.setText(Database.getInstance().getNewEmpId());
 
         binding.firstName.setText(Registration.getInstance().getFirstName());
         binding.lastName.setText(Registration.getInstance().getLastName());
@@ -317,6 +317,7 @@ public class RegistrationController implements AdapterView.OnItemSelectedListene
     }
 
     private void validate() {
+        String empId = Database.getInstance().getNewEmpId();
         String firstName = Registration.getInstance().getFirstName();
         String lastName = Registration.getInstance().getLastName();
         LocalDate dob = Registration.getInstance().getDob();
@@ -363,11 +364,11 @@ public class RegistrationController implements AdapterView.OnItemSelectedListene
             }
 
             if (employeeType == EmployeeType.MANAGER) {
-                employee = new Manager(firstName + " " + lastName, dob, Double.parseDouble(occupationRate), Double.parseDouble(monthlySalary), Integer.parseInt(bonusValue), vehicle);
+                employee = new Manager(empId, firstName + " " + lastName, dob, Double.parseDouble(occupationRate), Double.parseDouble(monthlySalary), Integer.parseInt(bonusValue), vehicle);
             } else if (employeeType == EmployeeType.PROGRAMMER) {
-                employee = new Programmer(firstName + " " + lastName, dob, Double.parseDouble(occupationRate), Double.parseDouble(monthlySalary), Integer.parseInt(bonusValue), vehicle);
+                employee = new Programmer(empId, firstName + " " + lastName, dob, Double.parseDouble(occupationRate), Double.parseDouble(monthlySalary), Integer.parseInt(bonusValue), vehicle);
             } else {
-                employee = new Programmer(firstName + " " + lastName, dob, Double.parseDouble(occupationRate), Double.parseDouble(monthlySalary), Integer.parseInt(bonusValue), vehicle);
+                employee = new Programmer(empId, firstName + " " + lastName, dob, Double.parseDouble(occupationRate), Double.parseDouble(monthlySalary), Integer.parseInt(bonusValue), vehicle);
             }
 
             Log.d(TAG, "validate: " + employee);
