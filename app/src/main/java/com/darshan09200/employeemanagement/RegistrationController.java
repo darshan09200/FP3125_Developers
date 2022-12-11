@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -15,12 +16,16 @@ import android.widget.Toast;
 import com.darshan09200.employeemanagement.databinding.ActivityRegistrationBinding;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.temporal.ChronoField;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 public class RegistrationController implements AdapterView.OnItemSelectedListener, RadioGroup.OnCheckedChangeListener,
         TextWatcher, DatePickerDialog.OnDateSetListener, View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 
+    private static final String TAG = "RegistrationController";
     ActivityRegistrationBinding binding;
     Context context;
 
@@ -50,6 +55,17 @@ public class RegistrationController implements AdapterView.OnItemSelectedListene
                 calendar.get(Calendar.YEAR),
                 calendar.get(Calendar.MONTH),
                 calendar.get(Calendar.DAY_OF_MONTH));
+
+        datePickerDialog
+                .getDatePicker()
+                .setMinDate(
+                        Date.from(LocalDate.of(1970, 1, 1).atStartOfDay(ZoneId.systemDefault()).toInstant()).getTime()
+                );
+        datePickerDialog
+                .getDatePicker()
+                .setMaxDate(
+                        Date.from(LocalDate.now().minusYears(16).atStartOfDay(ZoneId.systemDefault()).toInstant()).getTime()
+                );
 
         binding.firstName.addTextChangedListener(this);
         binding.lastName.addTextChangedListener(this);
@@ -336,6 +352,25 @@ public class RegistrationController implements AdapterView.OnItemSelectedListene
 
         if (msg.length() > 0) {
             Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+        } else {
+            Employee employee;
+            Vehicle vehicle;
+
+            if (vehicleKind == VehicleKind.CAR) {
+                vehicle = new Car(vehicleMake, vehiclePlate, vehicleColor, vehicleCategory, vehicleType);
+            } else {
+                vehicle = new Motorcycle(vehicleMake, vehiclePlate, vehicleColor, vehicleCategory, isSidecarChecked);
+            }
+
+            if (employeeType == EmployeeType.MANAGER) {
+                employee = new Manager(firstName + " " + lastName, dob, Double.parseDouble(occupationRate), Double.parseDouble(monthlySalary), Integer.parseInt(bonusValue), vehicle);
+            } else if (employeeType == EmployeeType.PROGRAMMER) {
+                employee = new Programmer(firstName + " " + lastName, dob, Double.parseDouble(occupationRate), Double.parseDouble(monthlySalary), Integer.parseInt(bonusValue), vehicle);
+            } else {
+                employee = new Programmer(firstName + " " + lastName, dob, Double.parseDouble(occupationRate), Double.parseDouble(monthlySalary), Integer.parseInt(bonusValue), vehicle);
+            }
+
+            Log.d(TAG, "validate: " + employee);
         }
     }
 }
