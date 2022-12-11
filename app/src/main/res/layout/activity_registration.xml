@@ -33,7 +33,7 @@
                 android:textStyle="bold" />
 
 
-            <EditText
+            <TextView
                 android:id="@+id/empId"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -42,7 +42,9 @@
                 android:hint="1384"
                 android:maxLines="1"
                 android:minHeight="48dp"
-                android:textAlignment="textEnd" />
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:gravity="center_vertical|end"/>
 
 
         </LinearLayout>
