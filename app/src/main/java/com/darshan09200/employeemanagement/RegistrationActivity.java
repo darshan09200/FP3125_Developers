@@ -18,7 +18,7 @@ public class RegistrationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityRegistrationBinding.inflate(getLayoutInflater());
-        controller = new RegistrationController(binding);
+        controller = new RegistrationController(this, binding);
         setContentView(binding.getRoot());
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
