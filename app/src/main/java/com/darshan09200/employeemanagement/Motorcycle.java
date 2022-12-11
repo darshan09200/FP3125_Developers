@@ -3,7 +3,7 @@ package com.darshan09200.employeemanagement;
 public class Motorcycle extends Vehicle {
     private boolean sidecar;
 
-    public Motorcycle(String make, String plate, String color, String category, boolean sidecar) {
+    public Motorcycle(VehicleMake make, String plate, VehicleColor color, VehicleCategory category, boolean sidecar) {
         super(make, plate, color, category);
         this.sidecar = sidecar;
     }
