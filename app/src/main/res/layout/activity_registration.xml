@@ -40,6 +40,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/all_border"
                 android:hint="1384"
+                android:maxLines="1"
                 android:minHeight="48dp"
                 android:textAlignment="textEnd" />
 
@@ -77,6 +78,8 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/all_border"
                     android:hint="John"
+                    android:inputType="text"
+                    android:maxLines="1"
                     android:minHeight="48dp" />
 
 
@@ -96,6 +99,8 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/all_border"
                     android:hint="Smith"
+                    android:inputType="text"
+                    android:maxLines="1"
                     android:minHeight="48dp" />
 
 
@@ -172,8 +177,9 @@
                         android:background="@drawable/all_border"
                         android:drawableStart="@drawable/ic_dollar"
                         android:drawablePadding="8dp"
-                        android:inputType="numberDecimal"
                         android:hint="3000"
+                        android:inputType="numberDecimal"
+                        android:maxLines="1"
                         android:minHeight="48dp" />
                 </LinearLayout>
                 <!--    Occupation Rate    -->
@@ -200,11 +206,12 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:inputType="numberDecimal"
                         android:background="@drawable/all_border"
                         android:drawableEnd="@drawable/ic_percent"
                         android:drawablePadding="8dp"
                         android:hint="90"
+                        android:inputType="numberDecimal"
+                        android:maxLines="1"
                         android:minHeight="48dp"
                         android:textAlignment="textEnd" />
 
@@ -256,6 +263,7 @@
                         android:gravity="end|center_vertical"
                         android:hint="10"
                         android:inputType="number"
+                        android:maxLines="1"
                         android:minHeight="48dp" />
                 </LinearLayout>
 
@@ -426,6 +434,7 @@
                     android:background="@drawable/all_border"
                     android:hint="3VS-A22"
                     android:inputType="textCapCharacters"
+                    android:maxLines="1"
                     android:minHeight="48dp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
