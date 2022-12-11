@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -23,11 +24,11 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class RegistrationController implements AdapterView.OnItemSelectedListener, RadioGroup.OnCheckedChangeListener,
-        TextWatcher, DatePickerDialog.OnDateSetListener, View.OnClickListener, CompoundButton.OnCheckedChangeListener {
+        DatePickerDialog.OnDateSetListener, View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 
     private static final String TAG = "RegistrationController";
     ActivityRegistrationBinding binding;
-    Context context;
+    RegistrationActivity activity;
 
     DatePickerDialog datePickerDialog;
 
@@ -46,12 +47,12 @@ public class RegistrationController implements AdapterView.OnItemSelectedListene
     ArrayList<String> vehicleColours;
     ArrayAdapter<String> vehicleColourAdapter;
 
-    public RegistrationController(Context context, ActivityRegistrationBinding binding) {
+    public RegistrationController(RegistrationActivity activity, ActivityRegistrationBinding binding) {
         this.binding = binding;
-        this.context = context;
+        this.activity = activity;
 
         Calendar calendar = Calendar.getInstance();
-        datePickerDialog = new DatePickerDialog(context, this,
+        datePickerDialog = new DatePickerDialog(activity, this,
                 calendar.get(Calendar.YEAR),
                 calendar.get(Calendar.MONTH),
                 calendar.get(Calendar.DAY_OF_MONTH));
@@ -67,51 +68,81 @@ public class RegistrationController implements AdapterView.OnItemSelectedListene
                         Date.from(LocalDate.now().minusYears(16).atStartOfDay(ZoneId.systemDefault()).toInstant()).getTime()
                 );
 
-        binding.firstName.addTextChangedListener(this);
-        binding.lastName.addTextChangedListener(this);
+        binding.firstName.addTextChangedListener(new TextChangedListener(binding.firstName) {
+            @Override
+            public void onTextChanged(EditText target, Editable s) {
+                RegistrationController.this.onTextChanged(target, s);
+            }
+        });
+        binding.lastName.addTextChangedListener(new TextChangedListener(binding.lastName) {
+            @Override
+            public void onTextChanged(EditText target, Editable s) {
+                RegistrationController.this.onTextChanged(target, s);
+            }
+        });
         binding.dob.setOnClickListener(this);
 
-        binding.monthlySalary.addTextChangedListener(this);
-        binding.occupationRate.addTextChangedListener(this);
+        binding.monthlySalary.addTextChangedListener(new TextChangedListener(binding.monthlySalary) {
+            @Override
+            public void onTextChanged(EditText target, Editable s) {
+                RegistrationController.this.onTextChanged(target, s);
+            }
+        });
+        binding.occupationRate.addTextChangedListener(new TextChangedListener(binding.occupationRate) {
+            @Override
+            public void onTextChanged(EditText target, Editable s) {
+                RegistrationController.this.onTextChanged(target, s);
+            }
+        });
 
         binding.empType.setOnItemSelectedListener(this);
         employeeTypes = Registration.getInstance().getEmployeeTypeData();
-        employeeTypeAdapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, employeeTypes);
+        employeeTypeAdapter = new ArrayAdapter<>(activity, android.R.layout.simple_spinner_item, employeeTypes);
         employeeTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.empType.setAdapter(employeeTypeAdapter);
 
-        binding.bonus.addTextChangedListener(this);
+        binding.bonus.addTextChangedListener(new TextChangedListener(binding.bonus) {
+            @Override
+            public void onTextChanged(EditText target, Editable s) {
+                RegistrationController.this.onTextChanged(target, s);
+            }
+        });
 
         binding.vehicleKind.setOnCheckedChangeListener(this);
 
         vehicleMakes = Registration.getInstance().getVehicleMakeData();
-        vehicleMakeAdapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, vehicleMakes);
+        vehicleMakeAdapter = new ArrayAdapter<>(activity, android.R.layout.simple_spinner_item, vehicleMakes);
         vehicleMakeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         vehicleMakeAdapter.setNotifyOnChange(true);
         binding.vehicleMake.setAdapter(vehicleMakeAdapter);
         binding.vehicleMake.setOnItemSelectedListener(this);
 
         vehicleCategories = Registration.getInstance().getVehicleCategoryData();
-        vehicleCategoryAdapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, vehicleCategories);
+        vehicleCategoryAdapter = new ArrayAdapter<>(activity, android.R.layout.simple_spinner_item, vehicleCategories);
         vehicleCategoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         vehicleCategoryAdapter.setNotifyOnChange(true);
         binding.vehicleCategory.setAdapter(vehicleCategoryAdapter);
         binding.vehicleCategory.setOnItemSelectedListener(this);
 
         vehicleTypes = Registration.getInstance().getVehicleTypeData();
-        vehicleTypeAdapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, vehicleTypes);
+        vehicleTypeAdapter = new ArrayAdapter<>(activity, android.R.layout.simple_spinner_item, vehicleTypes);
         vehicleTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.vehicleType.setAdapter(vehicleTypeAdapter);
         binding.vehicleType.setOnItemSelectedListener(this);
 
         vehicleColours = Registration.getInstance().getVehicleColorData();
-        vehicleColourAdapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, vehicleColours);
+        vehicleColourAdapter = new ArrayAdapter<>(activity, android.R.layout.simple_spinner_item, vehicleColours);
         vehicleColourAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.vehicleColor.setAdapter(vehicleColourAdapter);
         binding.vehicleColor.setOnItemSelectedListener(this);
 
         binding.sidecar.setOnCheckedChangeListener(this);
-        binding.vehiclePlate.addTextChangedListener(this);
+        binding.vehiclePlate.addTextChangedListener(new TextChangedListener(binding.vehiclePlate) {
+            @Override
+            public void onTextChanged(EditText target, Editable s) {
+                RegistrationController.this.onTextChanged(target, s);
+            }
+        });
 
         binding.submit.setOnClickListener(this);
         resetUI();
@@ -276,31 +307,21 @@ public class RegistrationController implements AdapterView.OnItemSelectedListene
         }
     }
 
-    @Override
-    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-    }
-
-    @Override
-    public void onTextChanged(CharSequence s, int start, int before, int count) {
-        if (binding.firstName.isFocused())
+    public void onTextChanged(EditText target, Editable s) {
+        if (target.getId() == R.id.firstName)
             Registration.getInstance().setFirstName(s.toString());
-        else if (binding.lastName.isFocused())
+        else if (target.getId() == R.id.lastName)
             Registration.getInstance().setLastName(s.toString());
-        else if (binding.monthlySalary.isFocused())
+        else if (target.getId() == R.id.monthlySalary)
             Registration.getInstance().setMonthlySalary(s.toString());
-        else if (binding.occupationRate.isFocused())
+        else if (target.getId() == R.id.occupationRate)
             Registration.getInstance().setOccupationRate(s.toString());
-        else if (binding.bonus.isFocused())
+        else if (target.getId() == R.id.bonus)
             Registration.getInstance().setBonusValue(s.toString());
-        else if (binding.vehiclePlate.isFocused())
+        else if (target.getId() == R.id.vehiclePlate)
             Registration.getInstance().setVehiclePlate(s.toString());
     }
 
-    @Override
-    public void afterTextChanged(Editable s) {
-
-    }
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -355,10 +376,10 @@ public class RegistrationController implements AdapterView.OnItemSelectedListene
         else if (vehicleColor == VehicleColor.CHOOSE_COLOR)
             msg = VehicleColor.CHOOSE_COLOR.getLabel();
         else if (vehiclePlate.isEmpty()) msg = "Please enter vehicle plate number";
-        else if(!isValidPlateNumber(vehiclePlate)) msg = "Please enter valid vehicle plate number";
+        else if (!isValidPlateNumber(vehiclePlate)) msg = "Please enter valid vehicle plate number";
         System.out.println(vehiclePlate);
         if (msg.length() > 0) {
-            Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+            Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show();
         } else {
             Employee employee;
             Vehicle vehicle;
@@ -377,7 +398,9 @@ public class RegistrationController implements AdapterView.OnItemSelectedListene
                 employee = new Programmer(empId, firstName + " " + lastName, dob, Double.parseDouble(occupationRate), Double.parseDouble(monthlySalary), Integer.parseInt(bonusValue), vehicle);
             }
 
-            Log.d(TAG, "validate: " + employee);
+            Database.getInstance().addEmployee(employee);
+            activity.finish();
         }
     }
 }
+
