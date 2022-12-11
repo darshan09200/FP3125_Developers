@@ -7,7 +7,7 @@ public class Programmer extends Employee {
     private int nbProjects;
 
     public Programmer(String name, LocalDate dob, double occupationRate, int nbProjects, Vehicle vehicle) {
-        super(name, dob, occupationRate, "Programmer", vehicle);
+        super(name, dob, occupationRate, EmployeeType.PROGRAMMER, vehicle);
         this.nbProjects = nbProjects;
     }
 

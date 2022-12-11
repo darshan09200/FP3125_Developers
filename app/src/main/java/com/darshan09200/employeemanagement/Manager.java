@@ -7,7 +7,7 @@ public class Manager extends Employee {
     private int nbClients;
 
     public Manager(String name, LocalDate dob, double occupationRate, int nbClients, Vehicle vehicle) {
-        super(name, dob, occupationRate, "Manager", vehicle);
+        super(name, dob, occupationRate, EmployeeType.MANAGER, vehicle);
         this.nbClients = nbClients;
     }
 

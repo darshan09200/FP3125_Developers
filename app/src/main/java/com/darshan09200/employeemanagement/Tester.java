@@ -7,7 +7,7 @@ public class Tester extends Employee {
     private int nbBugs;
 
     public Tester(String name, LocalDate dob, double occupationRate, int nbBugs, Vehicle vehicle) {
-        super(name, dob, occupationRate, "Tester", vehicle);
+        super(name, dob, occupationRate, EmployeeType.TESTER, vehicle);
         this.nbBugs = nbBugs;
     }
 

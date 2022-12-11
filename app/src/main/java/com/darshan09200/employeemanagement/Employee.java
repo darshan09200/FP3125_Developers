@@ -10,11 +10,11 @@ public abstract class Employee {
     private final String name;
     private LocalDate dob;
     private double occupationRate;
-    private String role;
+    private EmployeeType role;
 
     private final Vehicle vehicle;
 
-    public Employee(String name, LocalDate dob, double occupationRate, String role, Vehicle vehicle) {
+    public Employee(String name, LocalDate dob, double occupationRate, EmployeeType role, Vehicle vehicle) {
         this.empId = String.format("EMP-%03d", ++EMP_COUNT);
         this.name = name;
         this.dob = dob;
@@ -57,11 +57,11 @@ public abstract class Employee {
         this.occupationRate = formatOccupationRate(occupationRate);
     }
 
-    public String getRole() {
+    public EmployeeType getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(EmployeeType role) {
         this.role = role;
     }
 
