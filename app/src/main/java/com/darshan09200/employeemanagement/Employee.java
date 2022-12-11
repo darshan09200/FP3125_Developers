@@ -4,8 +4,8 @@ import java.time.LocalDate;
 import java.time.Period;
 
 public abstract class Employee {
-    static int EMP_COUNT = 0;
     static final double DEFAULT_OCCUPATION_RATE = 100;
+
     public final String empId;
     private final String name;
     private LocalDate dob;
@@ -14,8 +14,8 @@ public abstract class Employee {
     private EmployeeType role;
     private Vehicle vehicle;
 
-    public Employee(String name, LocalDate dob, double occupationRate, double monthlySalary, EmployeeType role, Vehicle vehicle) {
-        this.empId = String.format("EMP-%03d", ++EMP_COUNT);
+    public Employee(String empId, String name, LocalDate dob, double occupationRate, double monthlySalary, EmployeeType role, Vehicle vehicle) {
+        this.empId = empId;
         this.name = name;
         this.dob = dob;
         this.occupationRate = formatOccupationRate(occupationRate);
@@ -43,6 +43,9 @@ public abstract class Employee {
     }
 
     public int getAge() {
+        System.out.println(dob);
+        System.out.println(LocalDate.now());
+        System.out.println(Period.between(dob, LocalDate.now()).getYears());
         return Period.between(dob, LocalDate.now()).getYears();
     }
 
