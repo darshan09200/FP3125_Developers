@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.darshan09200.employeemanagement.databinding.ActivityMainBinding;
 
@@ -71,22 +72,13 @@ public class MainActivity extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                // If the list contains the search query than filter the adapter
-                // using the filter method with the query as its argument
-//                if (employees.contains(query)) {
-//                    adapter.getFilter().filter(query);
-//                } else {
-//                    // Search query not found in List View
-//                    Toast.makeText(MainActivity.this, "Not found", Toast.LENGTH_LONG).show();
-//                }
+                filterItems(query, true);
                 return false;
             }
 
-            // This method is overridden to filter the adapter according
-            // to a search query when the user is typing search
             @Override
             public boolean onQueryTextChange(String newText) {
-//                adapter.getFilter().filter(newText);
+                filterItems(newText, false);
                 return false;
             }
         });
@@ -97,8 +89,33 @@ public class MainActivity extends AppCompatActivity {
     protected void onRestart() {
         super.onRestart();
 
+        refreshData();
+    }
+
+    public void refreshData() {
         employees.clear();
         employees.addAll(Database.getInstance().getEmployees());
         adapter.notifyDataSetChanged();
+    }
+
+    public void filterItems(String input, boolean showToast) {
+        String text = input.trim().toLowerCase();
+        if (text.length() == 0) {
+            refreshData();
+            return;
+        }
+        ArrayList<Employee> allEmployeesData = Database.getInstance().getEmployees();
+        ArrayList<Employee> filteredEmployees = new ArrayList<>();
+        allEmployeesData.forEach(employee -> {
+            if (employee.getName().toLowerCase().indexOf(text) > -1 || employee.getRole().getLabel().toLowerCase().indexOf(text) > -1)
+                filteredEmployees.add(employee);
+        });
+        employees.clear();
+        employees.addAll(filteredEmployees);
+        adapter.notifyDataSetChanged();
+
+        if (showToast && filteredEmployees.size() == 0) {
+            Toast.makeText(MainActivity.this, "Not found", Toast.LENGTH_LONG).show();
+        }
     }
 }
