@@ -1,6 +1,7 @@
 package com.darshan09200.employeemanagement;
 
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class Database {
     private static Database instance;
@@ -25,6 +26,14 @@ public class Database {
     public void addEmployee(Employee employee) {
         employees.add(employee);
         Registration.getInstance().resetFields();
+    }
+
+    public Employee getEmployee(String empId) {
+        for (int i = 0; i < employees.size(); i++) {
+            Employee employee = employees.get(i);
+            if (employee.getEmpId().equals(empId)) return employee;
+        }
+        return null;
     }
 
     public String getNewEmpId() {

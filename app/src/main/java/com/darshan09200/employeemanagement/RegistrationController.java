@@ -95,11 +95,11 @@ public class RegistrationController implements AdapterView.OnItemSelectedListene
             }
         });
 
-        binding.empType.setOnItemSelectedListener(this);
         employeeTypes = Registration.getInstance().getEmployeeTypeData();
         employeeTypeAdapter = new ArrayAdapter<>(activity, android.R.layout.simple_spinner_item, employeeTypes);
         employeeTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.empType.setAdapter(employeeTypeAdapter);
+        binding.empType.setOnItemSelectedListener(this);
 
         binding.bonus.addTextChangedListener(new TextChangedListener(binding.bonus) {
             @Override
@@ -395,7 +395,7 @@ public class RegistrationController implements AdapterView.OnItemSelectedListene
             } else if (employeeType == EmployeeType.PROGRAMMER) {
                 employee = new Programmer(empId, firstName + " " + lastName, dob, Double.parseDouble(occupationRate), Double.parseDouble(monthlySalary), Integer.parseInt(bonusValue), vehicle);
             } else {
-                employee = new Programmer(empId, firstName + " " + lastName, dob, Double.parseDouble(occupationRate), Double.parseDouble(monthlySalary), Integer.parseInt(bonusValue), vehicle);
+                employee = new Tester(empId, firstName + " " + lastName, dob, Double.parseDouble(occupationRate), Double.parseDouble(monthlySalary), Integer.parseInt(bonusValue), vehicle);
             }
 
             Database.getInstance().addEmployee(employee);

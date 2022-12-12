@@ -53,7 +53,10 @@ public class MainActivity extends AppCompatActivity {
         adapter.setNotifyOnChange(true);
         binding.listView.setAdapter(adapter);
         binding.listView.setOnItemClickListener((parent, view, position, id) -> {
-            System.out.println(parent.getAdapter() + " " + position);
+            Employee employee = (Employee) parent.getItemAtPosition(position);
+            Intent intent = new Intent(MainActivity.this, DetailsActivity.class);
+            intent.putExtra("empId", employee.getEmpId());
+            startActivity(intent);
         });
 
         binding.addEmployee.setOnClickListener(v -> {

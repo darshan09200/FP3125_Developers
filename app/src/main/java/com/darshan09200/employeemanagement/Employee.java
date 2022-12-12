@@ -6,7 +6,7 @@ import java.time.Period;
 public abstract class Employee {
     static final double DEFAULT_OCCUPATION_RATE = 100;
 
-    public final String empId;
+    private final String empId;
     private final String name;
     private LocalDate dob;
     private double occupationRate;
