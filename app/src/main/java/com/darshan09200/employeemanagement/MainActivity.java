@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.darshan09200.employeemanagement.databinding.ActivityMainBinding;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -33,6 +34,79 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
 
         setContentView(binding.getRoot());
+
+        if (Database.getInstance().getEmployees().size() == 0) {
+            Database.getInstance().addEmployee(
+                    new Manager(
+                            "EMP-001",
+                            "Darshan Jain",
+                            LocalDate.of(2006, 12, 11),
+                            68.0,
+                            1000.0,
+                            98,
+                            new Motorcycle(
+                                    VehicleMake.KAWASAKI,
+                                    "567-098",
+                                    VehicleColor.BLACK,
+                                    VehicleCategory.RACE_MOTORCYCLE,
+                                    true
+                            )
+                    )
+            );
+            Database.getInstance().addEmployee(
+                    new Manager(
+                            "EMP-002",
+                            "Vijay Bharath Reddy",
+                            LocalDate.of(2006, 12, 11),
+                            68.0,
+                            1000.0,
+                            98,
+                            new Motorcycle(
+                                    VehicleMake.KAWASAKI,
+                                    "567-098",
+                                    VehicleColor.BLACK,
+                                    VehicleCategory.RACE_MOTORCYCLE,
+                                    false
+                            )
+                    )
+            );
+            Database.getInstance().addEmployee(
+                    new Programmer(
+                            "EMP-003",
+                            "Jayesh Khistria",
+                            LocalDate.of(2006, 12, 11),
+                            68.0,
+                            1000.0,
+                            98,
+                            new Car(
+                                    VehicleMake.BMW,
+                                    "567-098",
+                                    VehicleColor.BLACK,
+                                    VehicleCategory.FAMILY,
+                                    VehicleType.HATCHBACK
+                            )
+                    )
+            );
+
+            Database.getInstance().addEmployee(
+                    new Tester(
+                            "EMP-004",
+                            "Mohammed Mubashir Mughal",
+                            LocalDate.of(2006, 12, 11),
+                            68.0,
+                            1000.0,
+                            98,
+                            new Car(
+                                    VehicleMake.BMW,
+                                    "567-098",
+                                    VehicleColor.BLACK,
+                                    VehicleCategory.FAMILY,
+                                    VehicleType.HATCHBACK
+                            )
+                    )
+            );
+        }
+
 
         employees = new ArrayList<>();
         employees.addAll(Database.getInstance().getEmployees());
@@ -75,6 +149,7 @@ public class MainActivity extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+                searchView.clearFocus();
                 filterItems(query, true);
                 return false;
             }
